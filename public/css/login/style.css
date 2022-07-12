@@ -1,0 +1,99 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 1) 100%), url('/img/login/gedung_pens.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.card-login {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50vw;
+    top: 50vh;
+    width: 1000px;
+    height: 70vh;
+    background-color: rgb(255, 255, 255);
+    border-radius: 2vw;
+    box-shadow: 0.5vw 1vh rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.bg-blue {
+    background-color: #4491DF;
+    color: white;
+}
+
+.card-login-left {
+    left: 0%;
+    background-color: #4491DF;
+    width: 50%;
+}
+
+.card-login-right {
+    position: absolute;
+    left: 50%;
+    top: 0px;
+    background-color: #ffffff;
+    width: 50%;
+}
+
+.left-container {
+    height: 100%;
+    margin-top: 5%;
+}
+
+.left-welcome {
+    height: 15%;
+}
+
+.left-image {
+    position: relative;
+    height: 60%;
+    width: 80%;
+    margin-bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.left-appname {
+    height: 15%;
+}
+
+@media only screen and (max-height: 470px) {
+    .card-login {
+        height: 330px;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    .card-login {
+        width: 700px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .card-login {
+        width: 500px;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    .bg-blue {
+        display: none;
+    }
+    .card-login {
+        width: 300px;
+        height: 400px;
+        border-radius: 3vw;
+    }
+}

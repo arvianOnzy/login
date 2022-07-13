@@ -9,7 +9,7 @@ class Dokumen_Master extends Model
 {
     use HasFactory;
     protected $table = "dokumen_master";
-    protected $primarykey = "id";
+    // protected $primarykey = "id";
     protected $guarded = [];
     // protected $fillable = ['id', 'nama_dok', 'lokasi', 'lokasi_id', 'no_dok', 'jenisdok_id'];
 

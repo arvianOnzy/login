@@ -5,19 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Lokasi extends Model
+class permintaan extends Model
 {
     use HasFactory;
-    protected $table = "lokasi";
+    protected $table = "permintaan";
     // protected $primarykey = "id";
     protected $guarded = [];
 
-    public function dokumen_master()
+    public function jenis_dokumen()
     {
-        return $this->hasMany(Dokumen_Master::class);
+        return $this->belongsTo(Jenis_Dokumen::class);
     }
-    public function permintaan()
+    public function lokasi()
     {
-        return $this->hasMany(Dokumen_Master::class);
+        return $this->belongsTo(Lokasi::class);
     }
 }

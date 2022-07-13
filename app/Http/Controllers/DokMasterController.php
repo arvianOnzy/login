@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Jenis_Dokumen;
 use App\Models\Dokumen_Master;
 use App\Models\Lokasi;
-use DokumenMaster;
+
 use Illuminate\Http\Request;
 
 
@@ -15,7 +15,7 @@ class DokMasterController extends Controller
     {
         $lokasi = Lokasi::all();
         $jenis_dokumen = Jenis_Dokumen::all();
-        $paginate = Dokumen_Master::paginate(2);
+
         $filter_jenis = $request->input('jenis');
         $filter_lokasi = $request->input('lokasi');
         $dokumen_master = Dokumen_Master::leftJoin('jenis_dokumen', 'jenis_dokumen.id', '=', 'dokumen_master.jenisdok_id')
@@ -31,13 +31,13 @@ class DokMasterController extends Controller
             $dokumen_master = $dokumen_master->where('dokumen_master.lokasi_id', $filter_lokasi);
         }
 
-        $dokumen_master = $dokumen_master->get();
+        $dokumen_master = $dokumen_master->paginate(10);
 
         return view('dokumenMaster.read', [
             'dokumen_master' => $dokumen_master,
             'jenis_dokumen' => $jenis_dokumen,
             'lokasi' => $lokasi,
-            'paginate' => $paginate
+
         ]);
     }
     public function create(Request $request)
@@ -72,10 +72,12 @@ class DokMasterController extends Controller
             // 'lokasi' => 'required',
 
         ]);
-
+        // if ($request->fails()) {
+        //     return back()->with('errors', $request->messages()->all()[0])->withInput();
+        // }
 
         Dokumen_Master::create($request->all());
-        return redirect('/dashboard');
+        return redirect('/dashboard')->with('toast_success', 'Data Tersimpan!');
     }
 
     public function edit($id)

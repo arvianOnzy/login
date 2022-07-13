@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Jenis_Dokumen;
-use App\Models\Dokumen_Master;
+use App\Models\Permintaan;
 use App\Models\Lokasi;
 
 use Illuminate\Http\Request;
+
 
 class PinjamController extends Controller
 {
@@ -14,18 +15,40 @@ class PinjamController extends Controller
     {
         $lokasi = Lokasi::all();
         $jenis_dokumen = Jenis_Dokumen::all();
-        $dokumen_master = Dokumen_Master::leftJoin('jenis_dokumen', 'jenis_dokumen.id', '=', 'dokumen_master.jenisdok_id')
-            ->leftJoin('lokasi', 'lokasi.id', '=', 'dokumen_master.lokasi_id')
-            ->selectRaw('dokumen_master.*, jenis_dokumen.jenis')
-            ->selectRaw('dokumen_master.*, lokasi.lokasi')
+        $permintaan = Permintaan::leftJoin('jenis_dokumen', 'jenis_dokumen.id', '=', 'permintaan.jenisdok_id')
+            ->leftJoin('lokasi', 'lokasi.id', '=', 'permintaan.lokasi_id')
+            ->selectRaw('permintaan.*, jenis_dokumen.jenis')
+            ->selectRaw('permintaan.*, lokasi.lokasi')
             ->get();
-        // $dokumen_master = Dokumen_Master::where('jenis_dokumen', '=', $jenis_dokumen)
+        // $permintaan = Permintaan::where('jenis_dokumen', '=', $jenis_dokumen)
         //     ->where('lokasi', '=', $lokasi)
         //     ->get();
         return view('form.form', [
-            'dokumen_master' => $dokumen_master,
+            'permintaan' => $permintaan,
             'jenis_dokumen' => $jenis_dokumen,
             'lokasi' => $lokasi
         ]);
+    }
+    public function store(Request $request)
+    {
+
+        // $jenis_dokumen = Jenis_Dokumen::all();
+        // dd($request->all());
+        // exit;
+        $validatedData = $request->validate([
+            'nama_dok' => 'required',
+            'no_dok' => 'required',
+            'jenisdok_id' => 'required',
+            'lokasi_id' => 'required',
+            // 'jenis' => 'required',
+            // 'lokasi' => 'required',
+
+        ]);
+        // if ($request->fails()) {
+        //     return back()->with('errors', $request->messages()->all()[0])->withInput();
+        // }
+
+        Permintaan::create($request->all());
+        return redirect('/')->with('success', 'Permintaan Telah Terkirim!');
     }
 }

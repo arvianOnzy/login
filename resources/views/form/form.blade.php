@@ -9,8 +9,6 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/global.css') }}">
 
-    
-  
     <link rel="stylesheet" href="{{ asset('boxicons/css/boxicons.min.css') }}">
     <link rel="stylesheet" href="{{ asset('jstree/dist/themes/default/style.min.css') }}" />
   
@@ -37,21 +35,25 @@
         <form method="POST" action="/pinjam-dokumen/store" enctype="multipart/form-data">
             @csrf
             <h5 class="card-title">Pinjam Dokumen</h5>
-            @if(isset($errorMessage))
-            <div class="alert-danger mt-1 p-2">{{ $errorMessage }}</div>
-            @endif
+            
             <div style="max-height: 60vh; overflow-y:auto;">
                 <div class="py-2">
                     <div class="card-text me-3">
                     <label for="inputDok">Nama Dokumen</label>
-                    <input value="" type="text" class="form-control id="inputdokumen" name="nama_dok"style="border-radius: 10px">
+                    <input value="" type="text" class="form-control @if ($errors->first('nama_dok')) is-invalid @endif" id="inputdokumen" name="nama_dok"style="border-radius: 10px"> 
+                    @error('nama_dok')
+                    <div class="alert-danger mt-1 p-2">{{ $message }}</div>
+                    @enderror
                     
                 </div>
                 </div>
                 <div class="card-text me-3">
                     <div class="py-2">
                         <label for="inputno_dok">No Dokumen</label>
-                        <input value="" type="text" class="form-control  id="inputno_dok" name="no_dok"style="border-radius: 10px">
+                        <input value="" type="text" class="form-control @if ($errors->first('nama_dok')) is-invalid @endif"  id="inputno_dok" name="no_dok"style="border-radius: 10px">
+                        @error('nama_dok')
+                        <div class="alert-danger mt-1 p-2">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
                 <div class="card-text me-3">
@@ -76,8 +78,10 @@
                 </div>
             </div>
             <div class="float-end mt-4 mb-3 me-3">
-                <a class="btn btn-outline-secondary" href="/dashboard">Cancel</a>
+                <a class="btn btn-outline-secondary" href="/">Cancel</a>
                 <button class="btn btn-primary" type="submit">Submit</button>
+
+
             </div>
         </form>
         
@@ -89,5 +93,12 @@
 
     <script src="{{ asset('boxicons/boxicons.js') }}"></script>
     <script src="{{ asset('jstree/dist/jstree.min.js') }}"></script>
+
+<script>   
+
+</script>
+
+
+    
 </body>
 </html>

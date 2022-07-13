@@ -26,6 +26,7 @@ use App\Http\Controllers\FIlterController;
 // });
 Route::controller(PinjamController::class)->group(function () {
     Route::get('/', 'read')->name('Form Pinjam');
+    Route::post('/pinjam-dokumen/store', 'store');
 });
 
 Route::middleware('auth')->group(function () {

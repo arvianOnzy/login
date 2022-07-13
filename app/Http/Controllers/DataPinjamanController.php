@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Jenis_Dokumen;
-use App\Models\Dokumen_Master;
+use App\Models\Permintaan;
+use App\Models\Lokasi;
 use Illuminate\Http\Request;
+
 
 class DataPinjamanController extends Controller
 {
@@ -23,14 +25,19 @@ class DataPinjamanController extends Controller
     //     }
     // }
     {
-        // $jenis_dokumen = Jenis_Dokumen::where('dokumen_id', $id)->get();
-        $dokumen_master = Dokumen_Master::leftJoin('jenis_dokumen', 'jenis_dokumen.id', '=', 'dokumen_master.jenisdok_id')
-            ->selectRaw('dokumen_master.*, jenis_dokumen.jenis')
-            ->get();
+
+        $lokasi = Lokasi::all();
         $jenis_dokumen = Jenis_Dokumen::all();
+        $permintaan = Permintaan::leftJoin('jenis_dokumen', 'jenis_dokumen.id', '=', 'permintaan.jenisdok_id')
+            ->leftJoin('lokasi', 'lokasi.id', '=', 'permintaan.lokasi_id')
+            ->selectRaw('permintaan.*, jenis_dokumen.jenis')
+            ->selectRaw('permintaan.*, lokasi.lokasi');
+        $permintaan = $permintaan->get();
+
         return view('dataPinjaman.readPinjaman', [
-            'dokumen_master' => $dokumen_master,
-            'jenis_dokumen' => $jenis_dokumen
+            'permintaan' => $permintaan,
+            'jenis_dokumen' => $jenis_dokumen,
+            'lokasi' => $lokasi
         ]);
     }
 }

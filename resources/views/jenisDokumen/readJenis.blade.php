@@ -38,8 +38,8 @@
                            
                               
                             <td class="d-flex py-3">
-                              <a href="/edit-data/{{ $jenis_dokumen->id }}" style="background:none;border:none;outline:none;"><i class='bx bx-pencil tableAction'></i></a>
-                              <form action="/hapus-data/{{ $jenis_dokumen->id }}" method="post">
+                              <a href="/edit-jenis/{{ $jenis_dokumen->id }}" style="background:none;border:none;outline:none;"><i class='bx bx-pencil tableAction'></i></a>
+                              <form action="/hapus-jenis/{{ $jenis_dokumen->id }}" method="post">
                                 @method('delete')
                                 @csrf
                                 <button style="background:none;border:none;outline:none;"><i class='bx bx-trash tableAction'></i>

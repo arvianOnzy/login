@@ -34,6 +34,28 @@ class LokasiController extends Controller
         ]);
 
         Lokasi::create($validatedData);
-        return redirect('/lokasi');
+        return redirect('/lokasi')->with('toast_success', 'Data Telah Ditambahkan!');
+    }
+    public function edit($id)
+    {
+        // dd($id);
+        // exit;
+        $lokasi = Lokasi::find($id);
+        return view('lokasidokumen.editlokasi', [
+            'lokasi' => $lokasi
+        ]);
+    }
+    public function update($id, Request $request)
+    {
+        $lokasi = Lokasi::find($id);
+        $lokasi->update($request->except(['_token']));
+        $lokasi->save();
+        return redirect('/lokasi')->with('toast_success', 'Data Telah Dirubah!');
+    }
+    public function delete($id)
+    {
+        $lokasi = Lokasi::find($id);
+        $lokasi->delete();
+        return redirect('/lokasi')->with('toast_success', 'Data Telah Dihapus!');
     }
 }

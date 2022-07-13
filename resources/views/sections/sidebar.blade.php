@@ -45,7 +45,7 @@
             <div class="iocn-link">
                 <a href="/data-pinjaman">
                     <i class='bx bx-bookmark-alt-minus bx-md icon'></i>
-                    <span class="link_name">Data Pinjaman</span>
+                    <span class="link_name">Data Transaksi</span>
                 </a>
                 {{-- <i class='bx bxs-chevron-down arrow' ></i> --}}
             </div>

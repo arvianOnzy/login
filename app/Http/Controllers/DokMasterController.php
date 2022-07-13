@@ -77,7 +77,7 @@ class DokMasterController extends Controller
         // }
 
         Dokumen_Master::create($request->all());
-        return redirect('/dashboard')->with('toast_success', 'Data Tersimpan!');
+        return redirect('/dashboard')->with('toast_success', 'Data Telah Ditambahkan!');
     }
 
     public function edit($id)
@@ -105,12 +105,12 @@ class DokMasterController extends Controller
         $lokasi->save();
         // dd($id);
         // exit;
-        return redirect('/dashboard');
+        return redirect('/dashboard')->with('toast_success', 'Data Telah Diperbarui!');
     }
     public function delete($id)
     {
         $dokumen_master = Dokumen_Master::find($id);
         $dokumen_master->delete();
-        return redirect('/dashboard');
+        return redirect('/dashboard')->with('toast_success', 'Data Telah Terhapus!');
     }
 }

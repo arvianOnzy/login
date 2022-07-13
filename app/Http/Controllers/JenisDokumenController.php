@@ -33,30 +33,28 @@ class jenisDokumenController extends Controller
         ]);
 
         Jenis_Dokumen::create($validatedData);
-        return redirect('/jenis-dokumen');
+        return redirect('/jenis-dokumen')->with('toast_success', 'Data Ditambahakan!');
     }
-
-
-    // public function edit($id)
-    // {
-    //     // dd($id);
-    //     // exit;
-    //     $jenis_dokumen = Jenis_Dokumen::find($id);
-    //     return view('jenisDokumen.editdata', [
-    //         'jenis_dokumen' => $jenis_dokumen
-    //     ]);
-    // }
-    // public function update($id, Request $request)
-    // {
-    //     $jenis_dokumen = Jenis_Dokumen::find($id);
-    //     $jenis_dokumen->update($request->except(['_token']));
-    //     $jenis_dokumen->save();
-    //     return redirect('/dashboard');
-    // }
-    // public function delete($id)
-    // {
-    //     $jenis_dokumen = Jenis_Dokumen::find($id);
-    //     $jenis_dokumen->delete();
-    //     return redirect('/dashboard');
-    // }
+    public function edit($id)
+    {
+        // dd($id);
+        // exit;
+        $jenis_dokumen = Jenis_Dokumen::find($id);
+        return view('jenisDokumen.editjenis', [
+            'jenis_dokumen' => $jenis_dokumen
+        ]);
+    }
+    public function update($id, Request $request)
+    {
+        $jenis_dokumen = Jenis_Dokumen::find($id);
+        $jenis_dokumen->update($request->except(['_token']));
+        $jenis_dokumen->save();
+        return redirect('/jenis-dokumen')->with('toast_success', 'Data Telah Dirubah!');
+    }
+    public function delete($id)
+    {
+        $jenis_dokumen = Jenis_Dokumen::find($id);
+        $jenis_dokumen->delete();
+        return redirect('/jenis-dokumen')->with('toast_success', 'Data Telah Dihapus!');
+    }
 }

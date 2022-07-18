@@ -24,10 +24,11 @@
             <option value="{{ $lokasi->id }}" {{ isset($_GET['lokasi']) && $_GET['lokasi'] == $lokasi->id ? 'selected' : '' }}>{{ $lokasi->lokasi }}</option>
         @endforeach
       </select>
-
-        {{-- <div class="d-flex justify-content-end">
-        </div> --}}
     </div>
+    <div class="col-4">
+      <span>Cari</span>
+      <input class="form-control" type="text" placeholder="" aria-label="default input example" style="border-radius: 10px" id="search" name="search">
+  </div>
 </div>
 @include('sections.cardClose')
     @include('sections.cardOpen')

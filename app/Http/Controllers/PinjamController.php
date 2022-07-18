@@ -19,7 +19,6 @@ class PinjamController extends Controller
             ->leftJoin('lokasi', 'lokasi.id', '=', 'permintaan.lokasi_id')
             ->selectRaw('permintaan.*, jenis_dokumen.jenis')
             ->selectRaw('permintaan.*, lokasi.lokasi')
-
             ->get();
 
         return view('form.form', [

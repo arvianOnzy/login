@@ -17,9 +17,10 @@ class DokumenMaster extends Migration
             $table->id();
             $table->string('nama_dok');
             $table->string('no_dok');
-            $table->string('jenisdok_id')->nullable();
+            $table->string('jenisdok_id');
             // $table->string('lokasi');
             $table->string('lokasi_id');
+            $table->string('gambar')->nullable();
 
             $table->timestamp('last_used_at')->nullable();
             $table->timestamps();

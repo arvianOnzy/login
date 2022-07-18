@@ -66,6 +66,8 @@ Route::middleware('auth')->group(function () {
 
     Route::controller(DataPinjamanController::class)->group(function () {
         Route::get('/data-pinjaman', 'read')->name('Data Pinjaman');
+        Route::get('/search', 'search')->name('search');
+        Route::post('/approve/{id}', 'approve')->name('verifikasi');
     });
 
     // Route::controller(FilterController::class)->group(function () {

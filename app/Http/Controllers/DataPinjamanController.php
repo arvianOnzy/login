@@ -32,7 +32,7 @@ class DataPinjamanController extends Controller
             ->leftJoin('lokasi', 'lokasi.id', '=', 'permintaan.lokasi_id')
             ->selectRaw('permintaan.*, jenis_dokumen.jenis')
             ->selectRaw('permintaan.*, lokasi.lokasi');
-        $permintaan = $permintaan->get();
+        $permintaan = $permintaan->paginate(10);
 
         return view('dataPinjaman.readPinjaman', [
             'permintaan' => $permintaan,

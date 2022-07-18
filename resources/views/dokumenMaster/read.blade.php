@@ -51,6 +51,7 @@
                             <th class="th" scope="col">No Dok</th>
                             <th class="th" scope="col">Jenis</th>
                             <th class="th" scope="col">Lokasi</th>
+                            {{-- <th class="th" scope="col">Gambar</th> --}}
                             <th class="th" scope="col">Action</th>
                             
                           </tr>
@@ -63,6 +64,7 @@
                               <td>{{ $dokumen->no_dok }}</td>    
                               <td>{{ $dokumen->jenis }}</td>
                               <td>{{ $dokumen->lokasi }}</td>
+                              {{-- <td><img src="{{ asset('/storage/' . $dokumen->gambar) }}"></td> --}}
                              
                                 
                               <td class="d-flex py-3">
@@ -70,10 +72,11 @@
                                 <form action="/hapus-data/{{ $dokumen->id }}" method="post">
                                   @method('delete')
                                   @csrf
-                                  <button style="background:none;border:none;outline:none;"><i class='bx bx-trash tableAction'></i>
+                                  <button hidden style="background:none; border:none; outline:none" class="{{ 'btn-'.$dokumen->id }}">
                                   </button>
                                 </form>
-                                <a href="/edit-data/{{ $dokumen->id }}" style="background:none;border:none;outline:none;"><i class='bx bx-show tableAction'></i></a>
+                                <a href=""><i dokid="{{ $dokumen->id }}" class=' btn-hapus bx bx-trash tableAction'></i></a>
+                                <a href="/lihat-data/{{ $dokumen->id }}" style="background:none;border:none;outline:none;"><i class='bx bx-show tableAction'></i></a>
                               </td>
                             </tr>
                            
@@ -90,18 +93,33 @@
     </div>
 @endsection
 
-
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 @section('script')  
     <script>
       
     $(document).ready(function(){
       $("#jenis").on('change', function(){
         getDataDokumen();
-        
       })
-      
       $("#lokasi").on('change', function(){
         getDataDokumen();
+      })
+      $(".btn-hapus").on('click', function(e){
+        e.preventDefault();
+        var id= $(this).attr('dokid');
+        Swal.fire({
+          title: 'Apakah anda yakin?',
+          text: "Data ini akan dihapus!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Ya, Hapus'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            $(".btn-" + id).trigger('click');
+          }
+        })
       })
 
       function getDataDokumen(){
@@ -112,6 +130,14 @@
         var query = $.param(params);
         var url = '{{ route('dashboard') }}' + '?' + query;
         window.location.replace(url);
+      }
+      
+      function getHapus(e){
+        e.preventDefault();
+        var params = $("#hapus").val()
+        var action = $(this).attr(action);
+
+       
       }
     })
     </script>

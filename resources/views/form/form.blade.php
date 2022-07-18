@@ -93,7 +93,7 @@
 
     <script src="{{ asset('boxicons/boxicons.js') }}"></script>
     <script src="{{ asset('jstree/dist/jstree.min.js') }}"></script>
-
+    @include('sweetalert::alert')
 <script>   
 
 </script>

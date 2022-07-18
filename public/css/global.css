@@ -243,3 +243,6 @@ body.dark .home .text{
 .error .tableAction{
     color: var(--icon-color);
 }
+.table{
+    vertical-align: 0%;
+}

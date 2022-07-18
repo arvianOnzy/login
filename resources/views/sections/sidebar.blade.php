@@ -2,7 +2,7 @@
     <div class="openclose-button">
         <i class='bx bx-chevron-right toggle'></i>
     </div>
-
+    
     <ul class="nav-links"> 
         
         {{-- ============== TOP SIDE BAR ============= --}}     
@@ -28,33 +28,28 @@
             <div class="iocn-link">
                 <a href="/dashboard">
                     <i class='bx bx-file bx-md'></i>
-                    <span class="link_name">Data Master</span>
+                    <span class="link_name">Data Dokumen</span>
                 </a>
                 <i class='bx bxs-chevron-down arrow' ></i>
             </div>
             <ul class="sub-menu">
-                <li><a class="link_name">Data Master</a></li>
                 <li><a href="/jenis-dokumen" class="fs-6">Jenis Dokumen</a></li>
                 <li><a href="/lokasi" class="fs-6">Lokasi</a></li>
             </ul>
         </li>
         
-
-        
         <li class="{{Request::segment(1) == 'data-pinjaman'? 'active' : ''}}">
             <div class="iocn-link">
                 <a href="/data-pinjaman">
                     <i class='bx bx-bookmark-alt-minus bx-md icon'></i>
-                    <span class="link_name">Data Transaksi</span>
+                    <span class="link_name ">Data Transaksi</span>
                 </a>
+                {{-- <div class="ping">
+                    <span class=" toggle ">1</span>
+                </div> --}}
+                
                 {{-- <i class='bx bxs-chevron-down arrow' ></i> --}}
             </div>
-            {{-- <ul class="sub-menu">
-                <li><a class="link_name">Kurikulum</a></li>
-                <li><a href="/nama-kurikulum">Nama Kurikulum</a></li>
-                <li><a href="/paketKurikulum">Paket Kurikulum</a></li>
-                <li><a href="/kurikulum/history">History Kurikulum</a></li>
-            </ul> --}}
         </li>
         <li class="{{Request::segment(1) == 'folder'? 'active' : ''}}">
             <div class="iocn-link">

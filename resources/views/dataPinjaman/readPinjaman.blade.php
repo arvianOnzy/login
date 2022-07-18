@@ -62,6 +62,11 @@
                 </div>
             </div>
     @include('sections.cardClose')
+    <div class="d-flex justify-content-end py-3 px-5">
+
+      {{ $permintaan->links() }}
+
+  </div>
 @endsection
 
 

@@ -75,7 +75,7 @@
                         onclick="return confirm('Apakah Anda Yakin Ingin Menyetujui penelitian Tersebut??')"><i
                           class="fa-solid fa-check me-2" style="width: 15px"></i>Setuju</button> --}}
                             <td class="d-flex py-3">
-                              <form action="" method="post" enctype="multipart/form-data">>
+                              <form action="" method="post" enctype="multipart/form-data">
                               <a class="btn btn-primary" role="button" type="submit">Verifikasi</a>
                             </form>
                               {{-- <a href="/edit-pinjaman/{{ $p->id }}" style="background:none;border:none;outline:none;"><i class='bx bx-pencil tableAction'></i></a>

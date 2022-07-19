@@ -55,7 +55,16 @@
             <div class="iocn-link">
                 <a href="/folder">
                     <i class='bx bx-folder bx-md'></i>
-                    <span class="link_name">Dokumen</span>
+                    <span class="link_name">Folder Dokumen</span>
+                </a>
+                {{-- <i class='bx bxs-chevron-down arrow' ></i> --}}
+            </div>
+        </li>
+        <li class="{{Request::segment(1) == 'user'? 'active' : ''}}">
+            <div class="iocn-link">
+                <a href="/user">
+                    <i class='bx bx-user bx-md'></i>
+                    <span class="link_name">User</span>
                 </a>
                 {{-- <i class='bx bxs-chevron-down arrow' ></i> --}}
             </div>

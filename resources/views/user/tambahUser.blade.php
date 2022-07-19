@@ -29,7 +29,7 @@
                         <!-- Validation Errors -->
                         <x-auth-validation-errors class="mb-4" :errors="$errors" />
     
-                        <form method="POST" action="{{ route('register') }}">
+                        <form method="POST" action="/user/tambah-user/store" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-3">
                                 <label for="name">Nama</label>

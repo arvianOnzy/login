@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\UserController as AuthUserController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\PinjamController;
@@ -8,7 +9,8 @@ use App\Http\Controllers\DokMasterController;
 use App\Http\Controllers\FolderController;
 use App\Http\Controllers\JenisDokumenController;
 use App\Http\Controllers\LokasiController;
-use App\Http\Controllers\FIlterController;
+use App\Http\Controllers\UserController;
+// use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,9 +23,6 @@ use App\Http\Controllers\FIlterController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('form');
-// });
 Route::controller(PinjamController::class)->group(function () {
     Route::get('/', 'read')->name('Form Pinjam');
     Route::post('/pinjam-dokumen/store', 'store');
@@ -61,17 +60,20 @@ Route::middleware('auth')->group(function () {
         Route::post('/tambah-lokasi/store', 'store');
         Route::get('/edit-lokasi/{id}', 'edit')->name('Edit Lokasi');
         Route::put('/update-lokasi/{id}', 'update');
-        Route::delete('/hapus-lokasi/{id}', 'edit')->name('Edit Lokasi');
+        Route::delete('/hapus-lokasi/{id}', 'delete')->name('Hapus Lokasi');
     });
-
     Route::controller(DataPinjamanController::class)->group(function () {
         Route::get('/data-pinjaman', 'read')->name('Data Pinjaman');
         Route::get('/search', 'search')->name('search');
         Route::post('/approve/{id}', 'approve')->name('verifikasi');
     });
-
-    // Route::controller(FilterController::class)->group(function () {
-    //     Route::get('/filter', 'index');
-    // });
+    Route::controller(UserController::class)->group(function () {
+        Route::get('/user', 'read')->name('Data User');
+        Route::get('/user/tambah', 'create')->name('Tambah User');
+        Route::post('/user/tambah/store', 'store');
+        Route::get('/user/edit/{id}', 'edit')->name('Edit User');
+        Route::put('/user/update/{id}', 'update');
+        Route::delete('/user/hapus/{id}', 'delete')->name('hapus User');
+    });
 });
 require __DIR__ . '/auth.php';

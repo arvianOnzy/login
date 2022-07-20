@@ -14,7 +14,7 @@
             <div class="name-job">
             <div class="profile_name">{{ Auth::user()->name }}</div>
             <div class="job">
-                {{Auth::user()->role == 2 ? 'admin' : ''}}
+                {{Auth::user()->role_id == 1 ? 'admin' : ''}}
             </div>
             </div>
         </div>        

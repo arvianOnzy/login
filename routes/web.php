@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Auth\UserController as AuthUserController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\PinjamController;
@@ -10,7 +10,7 @@ use App\Http\Controllers\FolderController;
 use App\Http\Controllers\JenisDokumenController;
 use App\Http\Controllers\LokasiController;
 use App\Http\Controllers\UserController;
-// use App\Http\Controllers\UserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -69,10 +69,10 @@ Route::middleware('auth')->group(function () {
     });
     Route::controller(UserController::class)->group(function () {
         Route::get('/user', 'read')->name('Data User');
-        Route::get('/user/tambah', 'create')->name('Tambah User');
-        Route::post('/user/tambah/store', 'store');
-        Route::get('/user/edit/{id}', 'edit')->name('Edit User');
-        Route::put('/user/update/{id}', 'update');
+        Route::get('/tambah-user', 'create')->name('Tambah User');
+        Route::post('/tambah-user/store', 'store');
+        Route::get('/edit-user/{id}', 'edit')->name('Edit User');
+        Route::put('/update-user/{id}', 'update');
         Route::delete('/user/hapus/{id}', 'delete')->name('hapus User');
     });
 });

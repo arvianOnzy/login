@@ -25,7 +25,6 @@
                             <th class="th" scope="col">NIP</th>
                             <th class="th" scope="col">Nama</th>
                             <th class="th" scope="col">Email</th>
-                            <th class="th" scope="col">Email</th>
                             <th class="th" scope="col">Role</th>
                             <th class="th" scope="col">Action</th>
                           </tr>
@@ -37,7 +36,7 @@
                             <td>{{ $u->nip }}</td>    
                             <td>{{ $u->name }}</td>    
                             <td>{{ $u->email }}</td>    
-                            <td>{{ $u->role }}</td>    
+                            <td>{{ $u->name }}</td>    
                             {{-- <td><span class="badge rounded-pill bg-warning">Request</span></td>     --}}
                             {{-- <input type="text" name="status" value="disetujui" hidden> --}}
                       {{-- <button class="badge bg-success border-0 p-2"
@@ -66,7 +65,7 @@
     @include('sections.cardClose')
     <div class="d-flex justify-content-end py-3 px-5">
 
-      {{ $permintaan->links() }}
+      {{-- {{ $user->links() }} --}}
 
   </div>
 @endsection
@@ -74,7 +73,7 @@
 
 @section('script')
     
-<script>
+{{-- <script>
     $(document).ready(function(){
         $("#jenis").on('change', function(){
             getDataDokumen();
@@ -93,5 +92,5 @@
         window.location.replace(url);
       }
     })
-</script>
+</script> --}}
 @endsection

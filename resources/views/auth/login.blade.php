@@ -32,12 +32,12 @@
                             @csrf
                             <div class="mb-3">
                                 <label for="email">Email</label>
-                                <input value="{{old('email')}}" type="text" class="form-control @error('') is-invalid @enderror" id="email" name="email" required autofocus>
+                                <input value="{{old('email')}}"style="border-radius: 10px"  type="text" class="form-control @error('') is-invalid @enderror" id="email" name="email" required autofocus>
                             </div>
                             <div class="mb-3">
                                 <label for="password">Password</label>
                             
-                                <input value="{{old('password')}}" type="password" class="form-control @error('') is-invalid @enderror" id="inputpassword" name="password" required autocomplete="current-password">
+                                <input value="{{old('password')}}"style="border-radius: 10px"  type="password" class="form-control @error('') is-invalid @enderror" id="inputpassword" name="password" required autocomplete="current-password">
                                 
                             </div>
                             <div class="mb-3">

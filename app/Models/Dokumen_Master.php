@@ -27,8 +27,8 @@ class Dokumen_Master extends Model
     //     return Jenis_Dokumen::where('dokumen_id', '=', $this->id)->get();
     // }
 
-    public function scopeSearch($query, $name)
-    {
-        return $query->where('name', 'LIKE', "%{$name}%");
-    }
+    // public function scopeSearch($query, $name)
+    // {
+    //     return $query->where('name', 'LIKE', "%{$name}%");
+    // }
 }

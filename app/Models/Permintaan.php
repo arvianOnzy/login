@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Role;
 
 class permintaan extends Model
 {
@@ -19,5 +20,9 @@ class permintaan extends Model
     public function lokasi()
     {
         return $this->belongsTo(Lokasi::class);
+    }
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
     }
 }

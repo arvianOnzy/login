@@ -13,6 +13,13 @@ use Illuminate\Validation\Rules;
 
 class RegisteredUserController extends Controller
 {
+    // public function read()
+    // {
+    //     $user = User::all();
+    //     return view('user.readUser', [
+    //         'user' => $user
+    //     ]);
+    // }
     /**
      * Display the registration view.
      *
@@ -49,6 +56,30 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect('/user');
     }
+
+    // public function edit($id)
+    // {
+    //     $user = User::find($id);
+    //     return view('user.userEdit', [
+    //         'user' => $user
+    //     ]);
+    // }
+
+    // public function update($id, Request $request)
+    // {
+    //     $user = User::find($id);
+    //     $user->update($request->except(['_token']));
+
+    //     $user->save();
+    //     return redirect('/user');
+    // }
+
+    // public function delete($id)
+    // {
+    //     $user = User::find($id);
+    //     $user->delete();
+    //     return redirect('/user');
+    // }
 }

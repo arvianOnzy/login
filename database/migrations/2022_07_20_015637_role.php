@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Permintaan extends Migration
+class Role extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,9 @@ class Permintaan extends Migration
      */
     public function up()
     {
-        Schema::create('permintaan', function (Blueprint $table) {
+        Schema::create('role', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_dok');
-            $table->string('no_dok');
-            $table->string('jenisdok_id')->nullable();
-            $table->string('role_id');
-            $table->string('lokasi_id');
+            $table->string('nama');
 
             $table->timestamp('last_used_at')->nullable();
             $table->timestamps();
@@ -33,6 +29,5 @@ class Permintaan extends Migration
      */
     public function down()
     {
-        //
     }
 }

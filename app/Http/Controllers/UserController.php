@@ -1,68 +1,86 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Rels;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use PhpOffice\PhpSpreadsheet\Worksheet\Row;
 
 class UserController extends Controller
 {
     public function read()
     {
-        $user = User::all();
-        return view('user.userRead', [
-            'user' => $user
+        // $role = new Role();
+        $user = User::all()->where('role_id');
+        return view('user.readUser', [
+            'user' => $user,
+            // 'role' => $role
         ]);
     }
 
     public function create()
     {
-        return view('user.tambahUser');
+        // $role = Role::all();
+        $user = User::all()->where('role_id');
+        return view('user.tambahUser', [
+            'user' => $user,
+            // 'role' => Role::find($id)
+            // 'role' => $role
+        ]);
     }
 
     public function store(Request $request)
     {
+
         $request->validate([
+            'nip' => '',
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'role_id' => 'required',
         ]);
 
-        // $user = User::create([
+        // User::create([
         //     'name' => $request->name,
         //     'email' => $request->email,
         //     'password' => Hash::make($request->password),
         // ]);
-        // event(new Registered($user));
 
-        // Auth::login($user);
-
+        // dd($request);
+        // exit;
         User::create($request);
         return redirect('/user');
     }
     public function edit($id)
     {
         $user = User::find($id);
+        $role = Role::all();
         return view('user.userEdit', [
-            'user' => $user
+            'user' => $user,
+            'role' => $role
         ]);
     }
 
     public function update($id, Request $request)
     {
         $user = User::find($id);
+        $role = Role::find($id);
         $user->update($request->except(['_token']));
 
         $user->save();
-        return redirect('/user');
+        $role->save();
+
+        return redirect('/user')->with('toast_success', 'Data Telah Diperbarui!');
     }
 
     public function delete($id)
     {
-        $user = User::find($id);
+        $user = User::find($id)->where('role_id');
         $user->delete();
         return redirect('/user');
     }

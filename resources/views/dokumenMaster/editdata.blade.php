@@ -11,6 +11,7 @@
     @endif
     <div style="max-height: 60vh; overflow-y:auto;">
         <input type="hidden" name="id" id="id" value="{{ $dokumen_master->id }}">
+        <div class="card-text me-3">
         <div class="py-2">
             <label for="inputDok">Nama Dokumen</label>
             <input value="{{$dokumen_master->nama_dok}}" type="text" class="form-control @if ($errors->first('nama_dok')) is-invalid @endif" id="inputdokumen" name="nama_dok">
@@ -18,33 +19,38 @@
             <div class="alert-danger mt-1 p-2">{{ $message }}</div>
             @enderror
         </div>
+        </div>
         <div class="card-text me-3">
             <div class="py-2">
                 <label for="inputJenis">Jenis Dokumen</label>
                 <select class="form-select" aria-label="Default select example" style="border-radius: 10px" id="jenis">
-                    <option value="0">Semua</option>
+                    {{-- <option value="0">-- pilih --</option> --}}
                     @foreach($jenis_dokumen as $jenis)
                     <option value="{{ $jenis->jenis }}" {{ isset($_GET['jenis']) && $_GET['jenis'] == $jenis->id ? 'selected' : '' }}>{{ $jenis->jenis }}</option>
                     @endforeach
                   </select>
             </div>
-            <div class="card-text me-3">
-            <div class="py-2">
-                <label for="inputno_dok">No Dokumen</label>
-                <input value="{{$dokumen_master->no_dok}}" type="text" class="form-control @error('') is-invalid @enderror" id="inputno_dok" name="jenis_dok">
-                @error('no_dok')
-                <div class="alert-danger mt-1 p-2">{{ $message }}</div>
-                @enderror
-            </div>
-            <div class="card-text me-3">
-            <div class="py-2">
-                <label for="inputlokasi">Lokasi</label>
-                <input value="{{$dokumen_master->lokasi}}" type="lokasi" class="form-control @if ($errors->first('lokasi')) is-invalid @endif" id="inputlokasi" name="lokasi">
-                @error('lokasi')
-                <div class="alert-danger mt-1 p-2">{{ $message }}</div>
-                @enderror
-            </div>
         </div>
+            <div class="card-text me-3">
+                <div class="py-2">
+                    <label for="inputno_dok">No Dokumen</label>
+                    <input value="{{$dokumen_master->no_dok}}" type="text" class="form-control @error('') is-invalid @enderror" id="inputno_dok" name="jenis_dok">
+                    @error('no_dok')
+                    <div class="alert-danger mt-1 p-2">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+                <div class="card-text me-3">
+                    <div class="py-2">
+                        <label for="inputlokasi">Lokasi</label>
+                            <select class="form-select" aria-label="Default select example" style="border-radius: 10px" id="lokasi" name="lokasi_id">
+                                {{-- <option value="0">-- pilih --</option> --}}
+                                @foreach($lokasi as $lokasi)
+                                <option value="{{ $lokasi->id }}" {{ isset($_GET['lokasi']) && $_GET['lokasi'] == $lokasi->id ? 'selected' : '' }}>{{ $lokasi->lokasi }}</option>
+                                @endforeach
+                            </select>
+                    </div>
+                </div>
     </div>
     <div class="float-end mt-4 mb-3 me-3">
         <a class="btn btn-outline-secondary" href="/dashboard">Cancel</a>

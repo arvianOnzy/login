@@ -95,10 +95,10 @@ class DokMasterController extends Controller
     public function update($id, Request $request)
     {
 
-        $lokasi = Lokasi::all();
+        $lokasi = Lokasi::find($id);
         $dokumen_master = Dokumen_Master::find($id);
         $jenis_dokumen = Jenis_Dokumen::find($id);
-        $dokumen_master->update($request->except(['_token', 'jenis_dok', 'gambar']));
+        $dokumen_master->update($request->except(['_token', 'jenis_dok']));
 
         $dokumen_master->save();
         $jenis_dokumen->save();

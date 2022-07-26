@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Lokasi extends Migration
+class Folder extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class Lokasi extends Migration
      */
     public function up()
     {
-        Schema::create('lokasi', function (Blueprint $table) {
+        Schema::create('folder', function (Blueprint $table) {
             $table->id();
-            $table->string('ruangan');
-            $table->string('rak');
-            $table->string('kardus');
+            $table->string('tree_id');
+            $table->string('folder');
+            $table->string('unit_id');
 
             $table->timestamp('last_used_at')->nullable();
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }

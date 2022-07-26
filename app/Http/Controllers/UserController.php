@@ -56,15 +56,17 @@ class UserController extends Controller
         User::create($request);
         return redirect('/user');
     }
-    public function edit($id)
-    {
-        $user = User::find($id);
-        $role = Role::all();
-        return view('user.userEdit', [
-            'user' => $user,
-            'role' => $role
-        ]);
-    }
+    // public function edit($id)
+    // {
+    //     // echo 'a';
+    //     // exit;
+    //     $user = User::find($id);
+    //     $role = Role::all();
+    //     return view('user.userEdit', [
+    //         'user' => $user,
+    //         'role' => $role
+    //     ]);
+    // }
 
     public function update($id, Request $request)
     {
@@ -83,5 +85,12 @@ class UserController extends Controller
         $user = User::find($id)->where('role_id');
         $user->delete();
         return redirect('/user');
+    }
+    public function lihat($id)
+    {
+        $user = User::find($id)->where('role_id');
+        return view('user.lihatUser', [
+            'user' => $user
+        ]);
     }
 }

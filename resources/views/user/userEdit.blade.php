@@ -26,7 +26,7 @@
         </div>
         <div class="mb-3">
             <label for="name">Nama</label>
-            <input value="{{old('name')}}"style="border-radius: 10px"  type="text" class="form-control @error('') is-invalid @enderror" id="name" name="name" required autofocus>
+            <input value="{{old('name')}}"style="border-radius: 10px"  type="text" class="form-control @error('') is-invalid @enderror" id="name" name="name" required>
         </div>
         <div class="mb-3">
             <label for="email">Email</label>
@@ -34,11 +34,11 @@
         </div>
         <div class="mb-3">
             <label for="role">Role</label>
-            <select class="form-select" aria-label="Default select example" style="border-radius: 10px" id="jenis">
+            <select class="form-select" aria-label="Default select example" style="border-radius: 10px" id="role" name="role">
                 <option value="{{ old('role') }}"></option>
-                @foreach($role as $role)
-                    <option value="{{ $role->role }}" {{ isset($_GET['role']) && $_GET['role'] == $role->id ? 'selected' : '' }}>{{ $role->role }}</option>
-                    @endforeach
+                @foreach ($role as $role)
+                    <option value="{{ $role->id }} {{ $role == $role ? 'selected' : '' }}">{{ $role->name }}</option>
+                @endforeach
             </select>
         </div>
         <div class="mb-3">

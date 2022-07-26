@@ -22,7 +22,9 @@
                         <thead class="thead">
                           <tr>
                             <th class="th" scope="col">No</th>
-                            <th class="th" scope="col">Nama Lokasi</th>
+                            <th class="th" scope="col">Ruangan</th>
+                            <th class="th" scope="col">Rak</th>
+                            <th class="th" scope="col">Kardus</th>
                             <th class="th" scope="col">Action</th>
                           </tr>
                         </thead>
@@ -30,10 +32,10 @@
                           @foreach($lokasi as $lokasi)
                           <tr>
                             <td>{{$loop->iteration}}</td>
-                            <td>{{ $lokasi->lokasi }}</td>    
-                            
-                           
-                              
+                            <td>{{ $lokasi->ruangan }}</td>    
+                            <td>{{ $lokasi->rak }}</td>    
+                            <td>{{ $lokasi->kardus }}</td>    
+                                 
                             <td class="d-flex py-3">
                               <a href="/edit-lokasi/{{ $lokasi->id }}" style="background:none;border:none;outline:none;"><i class='bx bx-pencil tableAction'></i></a>
                               <form action="/hapus-lokasi/{{ $lokasi->id }}" method="post">

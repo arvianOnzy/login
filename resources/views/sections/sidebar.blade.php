@@ -24,21 +24,23 @@
         
         
         
-        <li class="{{Request::segment(1) == '/dashboard'? 'active' : ''}}">
+        <li class="">
             <div class="iocn-link">
-                <a href="/dashboard">
+                <a>
                     <i class='bx bx-file bx-md'></i>
-                    <span class="link_name">Data Dokumen</span>
+                    <span class="link_name">Data Master</span>
                 </a>
                 <i class='bx bxs-chevron-down arrow' ></i>
             </div>
             <ul class="sub-menu">
                 <li><a href="/jenis-dokumen" class="fs-6">Jenis Dokumen</a></li>
                 <li><a href="/lokasi" class="fs-6">Lokasi</a></li>
+                <li><a href="/folder">Folder</a></li>
+                <li><a href="/tahapan">Tahapan</a></li>
             </ul>
         </li>
         
-        <li class="{{Request::segment(1) == 'data-pinjaman'? 'active' : ''}}">
+        <li class="{{Request::segment(1) == '/data-pinjaman'? 'active' : ''}}">
             <div class="iocn-link">
                 <a href="/data-pinjaman">
                     <i class='bx bx-bookmark-alt-minus bx-md icon'></i>
@@ -51,16 +53,16 @@
                 {{-- <i class='bx bxs-chevron-down arrow' ></i> --}}
             </div>
         </li>
-        <li class="{{Request::segment(1) == 'folder'? 'active' : ''}}">
+        <li class="{{Request::segment(1) == '/dashboard'? 'active' : ''}}">
             <div class="iocn-link">
-                <a href="/folder">
+                <a href="/dashboard">
                     <i class='bx bx-folder bx-md'></i>
-                    <span class="link_name">Folder Dokumen</span>
+                    <span class="link_name">Dokumen</span>
                 </a>
                 {{-- <i class='bx bxs-chevron-down arrow' ></i> --}}
             </div>
         </li>
-        <li class="{{Request::segment(1) == 'user'? 'active' : ''}}">
+        <li class="{{Request::segment(1) == '/user'? 'active' : ''}}">
             <div class="iocn-link">
                 <a href="/user">
                     <i class='bx bx-user bx-md'></i>

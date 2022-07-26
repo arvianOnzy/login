@@ -10,6 +10,7 @@ use App\Http\Controllers\FolderController;
 use App\Http\Controllers\JenisDokumenController;
 use App\Http\Controllers\LokasiController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\TahapanController;
 
 
 /*
@@ -67,8 +68,16 @@ Route::middleware('auth')->group(function () {
         Route::get('/search', 'search')->name('search');
         Route::post('/approve/{id}', 'approve')->name('verifikasi');
     });
+    Route::controller(TahapanController::class)->group(function () {
+        Route::group(['prefix' => 'tahapan'], function () {
+            Route::get('/', 'index')->name('masterTahapan');
+            Route::get('/detail/{id}', 'detail')->name('detailTahapan');
+            Route::post('/store', 'store')->name('storeTahapan');
+        });
+    });
     Route::controller(UserController::class)->group(function () {
         Route::get('/user', 'read')->name('Data User');
+        Route::get('/profil/{id}', 'lihat')->name('Profil');
         Route::get('/tambah-user', 'create')->name('Tambah User');
         Route::post('/tambah-user/store', 'store');
         Route::get('/edit-user/{id}', 'edit')->name('Edit User');

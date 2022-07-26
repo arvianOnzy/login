@@ -29,7 +29,9 @@ class LokasiController extends Controller
         // exit;
 
         $validatedData = $request->validate([
-            'lokasi' => 'required',
+            'ruangan' => 'required',
+            'rak' => 'required',
+            'kardus' => 'required',
 
         ]);
 

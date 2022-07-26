@@ -36,7 +36,9 @@
                             <td>{{ $u->nip }}</td>    
                             <td>{{ $u->name }}</td>    
                             <td>{{ $u->email }}</td>    
-                            <td>{{ $u->name }}</td>    
+                            <td>{{ $u->ruangan }}</td>    
+                            <td>{{ $u->rak }}</td>    
+                            <td>{{ $u->kardus }}</td>    
                             {{-- <td><span class="badge rounded-pill bg-warning">Request</span></td>     --}}
                             {{-- <input type="text" name="status" value="disetujui" hidden> --}}
                       {{-- <button class="badge bg-success border-0 p-2"
@@ -53,7 +55,7 @@
                                 <button style="background:none;border:none;outline:none;"><i class='bx bx-trash tableAction'></i>
                                 </button>
                               </form>
-                              <a href="/lihat-user/{{ $u->id }}" style="background:none;border:none;outline:none;"><i class='bx bx-show tableAction'></i></a>
+                              <a href="/profil/{{ $u->id }}" style="background:none;border:none;outline:none;"><i class='bx bx-show tableAction'></i></a>
                             </td>
                           </tr>
                          

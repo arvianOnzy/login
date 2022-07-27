@@ -22,32 +22,31 @@
         @csrf
         <div class="mb-3">
             <label for="nip">NIP</label>
-            <input value="{{old('nip')}}"style="border-radius: 10px"  type="text" class="form-control @error('') is-invalid @enderror" id="nip" name="nip" required autofocus>
+            <input value="{{$user->nip}}" style="border-radius: 10px"  type="text" class="form-control @error('') is-invalid @enderror" id="nip" name="nip" required autofocus>
         </div>
         <div class="mb-3">
             <label for="name">Nama</label>
-            <input value="{{old('name')}}"style="border-radius: 10px"  type="text" class="form-control @error('') is-invalid @enderror" id="name" name="name" required>
+            <input value="{{$user->name}}" style="border-radius: 10px"  type="text" class="form-control @error('') is-invalid @enderror" id="name" name="name" required>
         </div>
         <div class="mb-3">
             <label for="email">Email</label>
-            <input value="{{old('email')}}"style="border-radius: 10px"  type="text" class="form-control @error('') is-invalid @enderror" id="email" name="email" required>
+            <input value="{{$user->email}}" style="border-radius: 10px"  type="text" class="form-control @error('') is-invalid @enderror" id="email" name="email" required>
         </div>
         <div class="mb-3">
             <label for="role">Role</label>
-            <select class="form-select" aria-label="Default select example" style="border-radius: 10px" id="role" name="role">
-                <option value="{{ old('role') }}"></option>
-                @foreach ($role as $role)
-                    <option value="{{ $role->id }} {{ $role == $role ? 'selected' : '' }}">{{ $role->name }}</option>
+            <select class="form-select" aria-label="Default select example" style="border-radius: 10px" id="role_id" name="role_id">
+                
+                {{-- @foreach ($role as $role)
+                    <option value="{{ $role->id }} {{ $role == $role ? 'selected' : '' }}">{{ $role->nama }}</option>
+                @endforeach --}}
+                @foreach($role as $role)
+                    <option value="{{ $role->id }}" {{ isset($_GET['nama']) && $_GET['nama'] == $role->id ? 'selected' : '' }}>{{ $role->nama }}</option>
                 @endforeach
             </select>
         </div>
         <div class="mb-3">
             <label for="password">Password</label>
-            <input value="{{old('password')}}" type="password" class="form-control @error('') is-invalid @enderror" id="password" name="password" required autocomplete="new-password">
-        </div>
-        <div class="mb-3">
-            <label for="password_confirmation">Ulangi Password</label>
-            <input value="{{old('password')}}" type="password" class="form-control @error('') is-invalid @enderror" id="password_confirmation" name="password_confirmation" required >
+            <input value="" type="password" class="form-control @error('') is-invalid @enderror" id="password" name="password" autocomplete="new-password">
         </div>
         
         <button class="btn btn-outline-primary mt-3" type="submit" >Simpan</button>

@@ -32,6 +32,10 @@
                         <form method="POST" action="/tambah-user/store" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-3">
+                                <label for="nip">NIP</label>
+                                <input value="{{old('nip')}}" style="border-radius: 10px"  type="text" class="form-control @error('') is-invalid @enderror" id="nip" name="nip" required autofocus>
+                            </div>
+                            <div class="mb-3">
                                 <label for="name">Nama</label>
                                 <input value="{{old('name')}}" style="border-radius: 10px"  type="text" class="form-control @error('') is-invalid @enderror" id="name" name="name" required autofocus>
                             </div>
@@ -41,10 +45,13 @@
                             </div>
                             <div class="mb-3">
                                 <label for="role">Role</label>
-                                <select class="form-select" aria-label="Default select example" style="border-radius: 10px" name="role" id="role">
-                                    <option selected disabled value="">-- pilih --</option>
-                                    @foreach ($user as $user)
-                                    <option value="{{ $user->role_id }} {{ $user == $user ? 'selected' : '' }}">{{ $user->name }}</option>
+                                <select class="form-select" aria-label="Default select example" style="border-radius: 10px" name="role_id" id="role_id">
+                                    
+                                    {{-- @foreach ($role as $role)
+                                    <option value="{{ $role->role_id }} {{ $role == $role ? 'selected' : '' }}">{{ $role->nama }}</option>
+                                    @endforeach --}}
+                                    @foreach($role as $role)
+                                    <option value="{{ $role->id }}" {{ isset($_GET['nama']) && $_GET['nama'] == $role->id ? 'selected' : '' }}>{{ $role->nama }}</option>
                                     @endforeach
                                 </select>
                             </div>

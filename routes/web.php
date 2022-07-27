@@ -32,7 +32,7 @@ Route::controller(PinjamController::class)->group(function () {
 Route::middleware('auth')->group(function () {
     Route::controller(DokMasterController::class)->group(function () {
         Route::get('/dashboard', 'read')->name('dashboard');
-        Route::get('/lihat-data', 'lihat')->name('Lihat Data');
+        Route::get('/lihat-data/{id}', 'lihat')->name('Lihat Data');
         Route::get('/tambah-data', 'create')->name('Tambahkan Data');
         Route::post('/tambah-data/store', 'store');
         Route::get('/edit-data/{id}', 'edit')->name('Edit Data');
@@ -41,11 +41,9 @@ Route::middleware('auth')->group(function () {
     });
     Route::controller(FolderController::class)->group(function () {
         Route::get('/folder', 'read')->name('Folder');
-        Route::get('/tambah-folder', 'create')->name('Tambah Folder');
-        Route::get('/tambah-folder/store', 'store');
-        Route::get('/edit-folder/{id}', 'edit')->name('Edit Folder');
-        Route::get('/update-folder/{id}', 'update');
-        Route::get('/hapus-folder/{id}', 'edit')->name('Edit Folder');
+        Route::get('/get-tree-folder', 'treeFolder')->name('TreeFolder');
+        Route::post('/store-folder', 'store')->name('StoreFolder');
+        Route::post('/hapus-folder', 'hapus')->name('hapusFolder');;
     });
     Route::controller(JenisDokumenController::class)->group(function () {
         Route::get('/jenis-dokumen', 'read')->name('Jenis Dokumen');
@@ -55,14 +53,14 @@ Route::middleware('auth')->group(function () {
         Route::put('/update-jenis/{id}', 'update');
         Route::delete('/hapus-jenis/{id}', 'edit')->name('Edit Folder');
     });
-    Route::controller(LokasiController::class)->group(function () {
-        Route::get('/lokasi', 'read')->name('Lokasi');
-        Route::get('/tambah-lokasi', 'create')->name('Tambah Lokasi');
-        Route::post('/tambah-lokasi/store', 'store');
-        Route::get('/edit-lokasi/{id}', 'edit')->name('Edit Lokasi');
-        Route::put('/update-lokasi/{id}', 'update');
-        Route::delete('/hapus-lokasi/{id}', 'delete')->name('Hapus Lokasi');
-    });
+    // Route::controller(LokasiController::class)->group(function () {
+    //     Route::get('/lokasi', 'read')->name('Lokasi');
+    //     Route::get('/tambah-lokasi', 'create')->name('Tambah Lokasi');
+    //     Route::post('/tambah-lokasi/store', 'store');
+    //     Route::get('/edit-lokasi/{id}', 'edit')->name('Edit Lokasi');
+    //     Route::put('/update-lokasi/{id}', 'update');
+    //     Route::delete('/hapus-lokasi/{id}', 'delete')->name('Hapus Lokasi');
+    // });
     Route::controller(DataPinjamanController::class)->group(function () {
         Route::get('/data-pinjaman', 'read')->name('Data Pinjaman');
         Route::get('/search', 'search')->name('search');
@@ -82,7 +80,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/tambah-user/store', 'store');
         Route::get('/edit-user/{id}', 'edit')->name('Edit User');
         Route::put('/update-user/{id}', 'update');
-        Route::delete('/user/hapus/{id}', 'delete')->name('hapus User');
+        Route::delete('/hapus-user/{id}', 'delete')->name('hapus User');
     });
 });
 require __DIR__ . '/auth.php';

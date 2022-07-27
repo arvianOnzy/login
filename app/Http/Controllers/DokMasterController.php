@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Jenis_Dokumen;
 use App\Models\Dokumen_Master;
-use App\Models\Lokasi;
+
 
 use Illuminate\Http\Request;
 
@@ -13,21 +13,16 @@ class DokMasterController extends Controller
 {
     public function read(Request $request)
     {
-        $lokasi = Lokasi::all();
+
         $jenis_dokumen = Jenis_Dokumen::all();
         $filter_jenis = $request->input('jenis');
-        $filter_lokasi = $request->input('lokasi');
+
         $dokumen_master = Dokumen_Master::leftJoin('jenis_dokumen', 'jenis_dokumen.id', '=', 'dokumen_master.jenisdok_id')
-            ->leftJoin('lokasi', 'lokasi.id', '=', 'dokumen_master.lokasi_id')
-            ->selectRaw('dokumen_master.*, jenis_dokumen.jenis')
-            ->selectRaw('dokumen_master.*, lokasi.lokasi');
+            ->selectRaw('dokumen_master.*, jenis_dokumen.jenis');
+
 
         if ($filter_jenis) {
             $dokumen_master = $dokumen_master->where('dokumen_master.jenisdok_id', $filter_jenis);
-        }
-
-        if ($filter_lokasi) {
-            $dokumen_master = $dokumen_master->where('dokumen_master.lokasi_id', $filter_lokasi);
         }
 
         $dokumen_master = $dokumen_master->paginate(15);
@@ -35,24 +30,22 @@ class DokMasterController extends Controller
         return view('dokumenMaster.read', [
             'dokumen_master' => $dokumen_master,
             'jenis_dokumen' => $jenis_dokumen,
-            'lokasi' => $lokasi,
+
 
         ]);
     }
     public function create(Request $request)
     {
-        $lokasi = Lokasi::all();
+
         $jenis_dokumen = Jenis_Dokumen::all();
         $dokumen_master = Dokumen_Master::leftJoin('jenis_dokumen', 'jenis_dokumen.id', '=', 'dokumen_master.jenisdok_id')
-            ->leftJoin('lokasi', 'lokasi.id', '=', 'dokumen_master.lokasi_id')
             ->selectRaw('dokumen_master.*, jenis_dokumen.jenis')
-            ->selectRaw('dokumen_master.*, lokasi.lokasi')
             ->get();
         return view('dokumenMaster.tambahkandata', [
             // 'request' => $request,
             'dokumen_master' => $dokumen_master,
             'jenis_dokumen' => $jenis_dokumen,
-            'lokasi' => $lokasi
+
         ]);
     }
 
@@ -60,19 +53,22 @@ class DokMasterController extends Controller
     {
 
         // $jenis_dokumen = Jenis_Dokumen::all();
-        // dd($request->gambar);
+        // dd();
         // exit;
         $validatedData = $request->validate([
             'nama_dok' => 'required',
             'no_dok' => 'required',
             'jenisdok_id' => 'required',
-            'lokasi_id' => 'required',
-            'gambar' => 'required',
+            'ruangan' => 'required',
+            'rak' => 'required',
+            'kardus' => 'required',
+            'gambar' => '',
             // 'lokasi' => 'required',
 
         ]);
 
-
+        // dd();
+        // exit;
 
         $validatedData['gambar'] = $request->file('gambar')->store('img-dokumen');
 
@@ -83,26 +79,27 @@ class DokMasterController extends Controller
     public function edit($id)
     {
 
-        $lokasi = Lokasi::all();
+
         $jenis_dokumen = Jenis_Dokumen::all();
         $dokumen_master = Dokumen_Master::find($id);
         return view('dokumenMaster.editdata', [
             'dokumen_master' => $dokumen_master,
             'jenis_dokumen' => $jenis_dokumen,
-            'lokasi' => $lokasi
+
         ]);
     }
     public function update($id, Request $request)
     {
 
-        $lokasi = Lokasi::find($id);
+
         $dokumen_master = Dokumen_Master::find($id);
         $jenis_dokumen = Jenis_Dokumen::find($id);
         $dokumen_master->update($request->except(['_token', 'jenis_dok']));
+        // $dokumen_master->unset();
 
         $dokumen_master->save();
         $jenis_dokumen->save();
-        $lokasi->save();
+
         // dd($id);
         // exit;
         if ($request->file('gambar')) {

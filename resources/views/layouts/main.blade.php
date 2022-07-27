@@ -35,6 +35,7 @@
   
     <script src="{{ asset('boxicons/boxicons.js') }}"></script>
     <script src="{{ asset('jstree/dist/jstree.min.js') }}"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
       
     @include('sweetalert::alert')
     @yield('script')

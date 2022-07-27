@@ -16,7 +16,8 @@ class UserController extends Controller
     public function read()
     {
         // $role = new Role();
-        $user = User::all()->where('role_id');
+        // $role = Role::all();
+        $user = User::with('role')->get();
         return view('user.readUser', [
             'user' => $user,
             // 'role' => $role
@@ -25,70 +26,90 @@ class UserController extends Controller
 
     public function create()
     {
-        // $role = Role::all();
-        $user = User::all()->where('role_id');
+        $role = Role::all();
+        $user = User::with('role')->get();
         return view('user.tambahUser', [
             'user' => $user,
             // 'role' => Role::find($id)
-            // 'role' => $role
+            'role' => $role
         ]);
     }
 
     public function store(Request $request)
     {
+        // dd($request);
+        // exit;
 
         $request->validate([
-            'nip' => '',
+            // 'nip' => 'required',
+            // 'name' => 'required',
+            // 'email' => 'required' | 'email',
+            // 'password' => 'required',
+            // 'role_id' => 'required',
+            'nip' => ['required'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'role_id' => 'required',
+            'role_id' => ['required'],
         ]);
 
-        // User::create([
-        //     'name' => $request->name,
-        //     'email' => $request->email,
-        //     'password' => Hash::make($request->password),
-        // ]);
+        User::create([
+            'nip' => $request->nip,
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role_id' => $request->role_id,
+        ]);
 
         // dd($request);
         // exit;
-        User::create($request);
+        // User::create($request);
         return redirect('/user');
     }
-    // public function edit($id)
-    // {
-    //     // echo 'a';
-    //     // exit;
-    //     $user = User::find($id);
-    //     $role = Role::all();
-    //     return view('user.userEdit', [
-    //         'user' => $user,
-    //         'role' => $role
-    //     ]);
-    // }
+    public function edit($id)
+    {
+        // echo 'a';
+        // exit;
+        $user = User::find($id);
+        $role = Role::all();
+        return view('user.userEdit', [
+            'user' => $user,
+            'role' => $role
+        ]);
+    }
 
     public function update($id, Request $request)
     {
+        // dd($request->all());
+        // exit;
+        $params = [
+            'nip' => $request->input('nip'),
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'role_id' => $request->input('role_id'),
+            'password' => $request->input('password'),
+        ];
         $user = User::find($id);
-        $role = Role::find($id);
-        $user->update($request->except(['_token']));
+        if (!$params['password']) {
+            unset($params['password']);
+        }
+        $user->update($params);
 
         $user->save();
-        $role->save();
+
 
         return redirect('/user')->with('toast_success', 'Data Telah Diperbarui!');
     }
 
     public function delete($id)
     {
-        $user = User::find($id)->where('role_id');
+        $user = User::find($id);
         $user->delete();
-        return redirect('/user');
+        return redirect('/user')->with('toast_success', 'Data Telah Dihapus!');
     }
     public function lihat($id)
     {
-        $user = User::find($id)->where('role_id');
+        $user = User::find($id)->with('role')->get();
         return view('user.lihatUser', [
             'user' => $user
         ]);

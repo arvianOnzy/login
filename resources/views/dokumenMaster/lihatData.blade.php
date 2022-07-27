@@ -6,9 +6,13 @@
 
     <h5 class="card-title">Tambahkan - Dokumen</h5>
     @foreach($dokumen_master as $dokumen)
+    <h6>{{ $dokumen->nama_dok }}</h6>    
+    <h6>{{ $dokumen->no_dok }}</h6>    
+    <h6>{{ $dokumen->jenis }}</h6>
+    <h6>{{ $dokumen->ruangan }}</h6>
+    <h6>{{ $dokumen->rak }}</h6>
+    <h6>{{ $dokumen->kardus }}</h6>
     <img src="{{ asset('/storage/' . $dokumen->gambar) }}">
-    {{-- <img src="http://{{$_SERVER['HTTP_HOST']}}/storage/{{$dokumen->gambar}}"> --}}
-    {{-- <img src="{{ url('/storage/img-dokumen/' . $dokumen->gambar }}"> --}}
     
     @endforeach
 @include('sections.cardClose')

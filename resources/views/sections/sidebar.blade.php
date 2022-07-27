@@ -15,6 +15,7 @@
             <div class="profile_name">{{ Auth::user()->name }}</div>
             <div class="job">
                 {{Auth::user()->role_id == 1 ? 'admin' : ''}}
+                {{Auth::user()->role_id == 2 ? 'member' : ''}}
             </div>
             </div>
         </div>        
@@ -34,7 +35,7 @@
             </div>
             <ul class="sub-menu">
                 <li><a href="/jenis-dokumen" class="fs-6">Jenis Dokumen</a></li>
-                <li><a href="/lokasi" class="fs-6">Lokasi</a></li>
+                {{-- <li><a href="/lokasi" class="fs-6">Lokasi</a></li> --}}
                 <li><a href="/folder">Folder</a></li>
                 <li><a href="/tahapan">Tahapan</a></li>
             </ul>

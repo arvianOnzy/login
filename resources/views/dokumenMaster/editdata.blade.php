@@ -40,17 +40,7 @@
                     @enderror
                 </div>
             </div>
-                <div class="card-text me-3">
-                    <div class="py-2">
-                        <label for="inputlokasi">Lokasi</label>
-                            <select class="form-select" aria-label="Default select example" style="border-radius: 10px" id="lokasi" name="lokasi_id">
-                                {{-- <option value="0">-- pilih --</option> --}}
-                                @foreach($lokasi as $lokasi)
-                                <option value="{{ $lokasi->id }}" {{ isset($_GET['lokasi']) && $_GET['lokasi'] == $lokasi->id ? 'selected' : '' }}>{{ $lokasi->lokasi }}</option>
-                                @endforeach
-                            </select>
-                    </div>
-                </div>
+                
     </div>
     <div class="float-end mt-4 mb-3 me-3">
         <a class="btn btn-outline-secondary" href="/dashboard">Cancel</a>

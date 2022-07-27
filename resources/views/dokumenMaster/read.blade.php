@@ -16,7 +16,7 @@
             @endforeach
           </select>
     </div>
-    <div class="col-4">
+    {{-- <div class="col-4">
         <span>Lokasi</span>
         <select class="form-select" aria-label="Default select example" style="border-radius: 10px" id="lokasi">
         <option selected value="0">pilih lokasi</option>
@@ -24,7 +24,7 @@
             <option value="{{ $lokasi->id }}" {{ isset($_GET['lokasi']) && $_GET['lokasi'] == $lokasi->id ? 'selected' : '' }}>{{ $lokasi->lokasi }}</option>
         @endforeach
       </select>
-    </div>
+    </div> --}}
     <div class="col-4">
       <span>Cari</span>
       <input class="form-control" type="text" placeholder="" aria-label="default input example" style="border-radius: 10px" id="search" name="search">
@@ -51,7 +51,9 @@
                             <th class="th" scope="col">Nama Dokumen</th>
                             <th class="th" scope="col">No Dok</th>
                             <th class="th" scope="col">Jenis</th>
-                            <th class="th" scope="col">Lokasi</th>
+                            <th class="th" scope="col">Ruangan</th>
+                            <th class="th" scope="col">Rak</th>
+                            <th class="th" scope="col">Kardus</th>
                             {{-- <th class="th" scope="col">Gambar</th> --}}
                             <th class="th" scope="col">Action</th>
                             
@@ -64,7 +66,9 @@
                               <td>{{ $dokumen->nama_dok }}</td>    
                               <td>{{ $dokumen->no_dok }}</td>    
                               <td>{{ $dokumen->jenis }}</td>
-                              <td>{{ $dokumen->lokasi }}</td>
+                              <td>{{ $dokumen->ruangan }}</td>
+                              <td>{{ $dokumen->rak }}</td>
+                              <td>{{ $dokumen->kardus }}</td>
                               {{-- <td><img src="{{ asset('/storage/' . $dokumen->gambar) }}"></td> --}}
                              
                                 
@@ -77,7 +81,7 @@
                                   </button>
                                 </form>
                                 <a href=""><i dokid="{{ $dokumen->id }}" class=' btn-hapus bx bx-trash tableAction'></i></a>
-                                <a href="/lihat-data/{{ $dokumen->id }}" style="background:none;border:none;outline:none;"><i class='bx bx-show tableAction'></i></a>
+                                <a href="{{ asset('/storage/' . $dokumen->gambar) }}" style="background:none;border:none;outline:none;"><i class='bx bx-show tableAction'></i></a>
                               </td>
                             </tr>
                            

@@ -36,9 +36,8 @@
                             <td>{{ $u->nip }}</td>    
                             <td>{{ $u->name }}</td>    
                             <td>{{ $u->email }}</td>    
-                            <td>{{ $u->ruangan }}</td>    
-                            <td>{{ $u->rak }}</td>    
-                            <td>{{ $u->kardus }}</td>    
+                            <td>{{ $u->role->nama }}</td>    
+                              
                             {{-- <td><span class="badge rounded-pill bg-warning">Request</span></td>     --}}
                             {{-- <input type="text" name="status" value="disetujui" hidden> --}}
                       {{-- <button class="badge bg-success border-0 p-2"
@@ -52,9 +51,10 @@
                               <form action="/hapus-user/{{ $u->id }}" method="post">
                                 @method('delete')
                                 @csrf
-                                <button style="background:none;border:none;outline:none;"><i class='bx bx-trash tableAction'></i>
+                                <button hidden style="background:none; border:none; outline:none" class="{{ 'btn-'.$u->id }}">
                                 </button>
                               </form>
+                              <a href=""><i uid="{{ $u->id }}" class=' btn-hapus bx bx-trash tableAction'></i></a>
                               <a href="/profil/{{ $u->id }}" style="background:none;border:none;outline:none;"><i class='bx bx-show tableAction'></i></a>
                             </td>
                           </tr>
@@ -75,24 +75,32 @@
 
 @section('script')
     
-{{-- <script>
+<script>
     $(document).ready(function(){
-        $("#jenis").on('change', function(){
-            getDataDokumen();
+        
+      $(".btn-hapus").on('click', function(e){
+        e.preventDefault();
+        var id= $(this).attr('uid');
+        Swal.fire({
+          title: 'Apakah anda yakin?',
+          text: "Data ini akan dihapus!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Ya, Hapus'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            $(".btn-" + id).trigger('click');
+          }
         })
-        $("#lokasi").on('change', function(){
-            getDataDokumen();
-        })
+      })
 
-        function getDataDokumen(){
-        var params = {
-            jenis : $("#jenis").val(),
-            lokasi : $("#lokasi").val()
-        }
-        var query = $.param(params);
-        var url = '{{ route('Data Pinjaman') }}' + '?' + query;
-        window.location.replace(url);
+        function getHapus(e){
+        e.preventDefault();
+        var params = $("#hapus").val()
+        var action = $(this).attr(action);
       }
     })
-</script> --}}
+</script>
 @endsection

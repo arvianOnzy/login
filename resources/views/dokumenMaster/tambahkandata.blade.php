@@ -12,7 +12,7 @@
         <div class="py-2">
             <div class="card-text me-3">
             <label for="inputDok">Nama Dokumen</label>
-            <input value="" type="text" class="form-control @if ($errors->first('nama_dok')) is-invalid @endif" id="inputdokumen" name="nama_dok">
+            <input value="" type="text" class="form-control @if ($errors->first('nama_dok')) is-invalid @endif" id="dokumen" name="nama_dok">
             @error('nama_dok')
             <div class="alert-danger mt-1 p-2">{{ $message }}</div>
             @enderror
@@ -29,22 +29,39 @@
             </div>
         </div>
             <div class="card-text me-3">
-            <div class="py-2">
-                <label for="inputJenis">No Dokumen</label>
-                <input value="" type="text" class="form-control @error('') is-invalid @enderror" id="inputno_dok" name="no_dok">
-                @error('no_dok')
-                <div class="alert-danger mt-1 p-2">{{ $message }}</div>
-                @enderror
-            </div>
+                <div class="py-2">
+                    <label for="inputno_dok">No Dokumen</label>
+                    <input value="" type="text" class="form-control @error('') is-invalid @enderror" id="no_dok" name="no_dok">
+                    @error('no_dok')
+                    <div class="alert-danger mt-1 p-2">{{ $message }}</div>
+                    @enderror
+                </div>
             </div>
             <div class="card-text me-3">
                 <div class="py-2">
-                    <label for="inputlokasi">Lokasi</label>
-                    <select class="form-select" aria-label="Default select example" style="border-radius: 10px" id="lokasi" name="lokasi_id">
-                        @foreach($lokasi as $lokasi)
-                        <option value="{{ $lokasi->id }}" {{ isset($_GET['lokasi']) && $_GET['lokasi'] == $lokasi->id ? 'selected' : '' }}>{{ $lokasi->lokasi }}</option>
-                        @endforeach
-                    </select>
+                    <label for="inputRuangan">Ruangan</label>
+                    <input value="" type="text" class="form-control @error('') is-invalid @enderror" id="ruangan" name="ruangan">
+                    @error('ruangan')
+                    <div class="alert-danger mt-1 p-2">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+            <div class="card-text me-3">
+                <div class="py-2">
+                    <label for="inputRak">Rak</label>
+                    <input value="" type="text" class="form-control @error('') is-invalid @enderror" id="rak" name="rak">
+                    @error('rak')
+                    <div class="alert-danger mt-1 p-2">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+            <div class="card-text me-3">
+                <div class="py-2">
+                    <label for="inputJenis">Kardus</label>
+                    <input value="" type="text" class="form-control @error('') is-invalid @enderror" id="kardus" name="kardus">
+                    @error('kardus')
+                    <div class="alert-danger mt-1 p-2">{{ $message }}</div>
+                    @enderror
                 </div>
             </div>
             <div class="card-text me-3">

@@ -59,14 +59,14 @@
                 <div class="card-text me-3">
                     <div class="py-2">
                         <label for="inputJenis">Jenis Dokumen</label>
-                        <select class="form-select" aria-label="Default select example" style="border-radius: 10px" id="jenis" name="jenisdok_id">
+                        <select class="form-select" aria-label="Default select example" style="border-radius: 10px" id="jenisdok_id" name="jenisdok_id">
                             @foreach($jenis_dokumen as $jenis)
                             <option value="{{ $jenis->id }}" {{ isset($_GET['jenis']) && $_GET['jenis'] == $jenis->id ? 'selected' : '' }}>{{ $jenis->jenis }}</option>
                             @endforeach
                           </select>
                     </div>
                 </div>
-                <div class="card-text me-3">
+                {{-- <div class="card-text me-3">
                     <div class="py-2">
                         <label for="inputlokasi">Lokasi</label>
                             <select class="form-select" aria-label="Default select example" style="border-radius: 10px" id="lokasi" name="lokasi_id">
@@ -75,7 +75,7 @@
                                 @endforeach
                             </select>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <div class="float-end mt-4 mb-3 me-3">
                 <a class="btn btn-outline-secondary" href="/">Cancel</a>

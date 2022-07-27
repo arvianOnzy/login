@@ -18,8 +18,8 @@ class Permintaan extends Migration
             $table->string('nama_dok');
             $table->string('no_dok');
             $table->string('jenisdok_id')->nullable();
-            $table->string('role_id');
-            $table->string('lokasi_id');
+            // $table->string('role_id');
+            // $table->string('lokasi_id');
 
             $table->timestamp('last_used_at')->nullable();
             $table->timestamps();

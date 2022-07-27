@@ -31,8 +31,8 @@
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
                             <div class="mb-3">
-                                <label for="email">Email</label>
-                                <input value="{{old('email')}}"style="border-radius: 10px"  type="text" class="form-control @error('') is-invalid @enderror" id="email" name="email" required autofocus>
+                                <label for="name">Username</label>
+                                <input value="{{old('name')}}"style="border-radius: 10px"  type="text" class="form-control @error('') is-invalid @enderror" id="name" name="name" required autofocus>
                             </div>
                             <div class="mb-3">
                                 <label for="password">Password</label>

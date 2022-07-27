@@ -53,9 +53,9 @@
                                 </a>
                             </div>
                             {{-- <button class="btn btn-outline-primary mt-3" style="width: 100%;">{{ __('Register') }}</button> --}}
-                            <x-button class="ml-4">
+                            <button class="btn btn-outline-primary mt-3" style="width: 100%;">
                                 {{ __('Register') }}
-                            </x-button>
+                            </button>
                         </form>
                         
                     </div>
@@ -66,12 +66,12 @@
     </body>
     </x-guest-layout>
 
-    <x-guest-layout>
+    {{-- <x-guest-layout>
         <x-auth-card>
             <x-slot name="logo">
-                {{-- <a href="/">
+                <a href="/">
                     <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-                </a> --}}
+                </a>
             </x-slot>
     
             <!-- Validation Errors -->
@@ -125,4 +125,4 @@
             </form>
         </x-auth-card>
     </x-guest-layout>
-     
+      --}}

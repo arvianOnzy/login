@@ -13,18 +13,17 @@ class PinjamController extends Controller
 {
     public function read()
     {
-        $lokasi = Lokasi::all();
+
         $jenis_dokumen = Jenis_Dokumen::all();
         $permintaan = Permintaan::leftJoin('jenis_dokumen', 'jenis_dokumen.id', '=', 'permintaan.jenisdok_id')
-            ->leftJoin('lokasi', 'lokasi.id', '=', 'permintaan.lokasi_id')
             ->selectRaw('permintaan.*, jenis_dokumen.jenis')
-            ->selectRaw('permintaan.*, lokasi.lokasi')
             ->get();
+        // $permintaan = Permintaan::with('jenis_dokumen')->get();
 
         return view('form.form', [
             'permintaan' => $permintaan,
             'jenis_dokumen' => $jenis_dokumen,
-            'lokasi' => $lokasi
+
         ]);
     }
     public function store(Request $request)
@@ -37,7 +36,7 @@ class PinjamController extends Controller
             'nama_dok' => 'required',
             'no_dok' => 'required',
             'jenisdok_id' => 'required',
-            'lokasi_id' => 'required',
+            // 'lokasi_id' => 'required',
             // 'jenis' => 'required',
             // 'lokasi' => 'required',
 

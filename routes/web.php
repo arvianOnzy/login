@@ -32,6 +32,7 @@ Route::controller(PinjamController::class)->group(function () {
 Route::middleware('auth')->group(function () {
     Route::controller(DokMasterController::class)->group(function () {
         Route::get('/dashboard', 'read')->name('dashboard');
+        Route::get('/cari', 'cari')->name('cari');
         Route::get('/lihat-data/{id}', 'lihat')->name('Lihat Data');
         Route::get('/tambah-data', 'create')->name('Tambahkan Data');
         Route::post('/tambah-data/store', 'store');

@@ -16,20 +16,16 @@ class DataPinjamanController extends Controller
         $lokasi = Lokasi::all();
         $jenis_dokumen = Jenis_Dokumen::all();
         $filter_jenis = $request->input('jenis');
-        $filter_lokasi = $request->input('lokasi');
+
         $keyword = $request->search;
         $permintaan = Permintaan::leftJoin('jenis_dokumen', 'jenis_dokumen.id', '=', 'permintaan.jenisdok_id')
-            ->leftJoin('lokasi', 'lokasi.id', '=', 'permintaan.lokasi_id')
-            ->selectRaw('permintaan.*, jenis_dokumen.jenis')
-            ->selectRaw('permintaan.*, lokasi.lokasi');
+            ->selectRaw('permintaan.*, jenis_dokumen.jenis');
 
         if ($filter_jenis) {
             $permintaan = $permintaan->where('permintaan.jenisdok_id', $filter_jenis);
         }
 
-        if ($filter_lokasi) {
-            $permintaan = $permintaan->where('permintaan.lokasi_id', $filter_lokasi);
-        }
+
         if ($keyword) {
             $permintaan = $permintaan->where('nama_dok', 'like', "%" . $keyword . "%");
         }
@@ -51,9 +47,7 @@ class DataPinjamanController extends Controller
         // $filter_lokasi = $request->input('lokasi');
         $keyword = $request->search;
         $permintaan = Permintaan::leftJoin('jenis_dokumen', 'jenis_dokumen.id', '=', 'permintaan.jenisdok_id')
-            ->leftJoin('lokasi', 'lokasi.id', '=', 'permintaan.lokasi_id')
-            ->selectRaw('permintaan.*, jenis_dokumen.jenis')
-            ->selectRaw('permintaan.*, lokasi.lokasi');
+            ->selectRaw('permintaan.*, jenis_dokumen.jenis');
 
         // if ($filter_jenis) {
         //     $permintaan = $permintaan->where('permintaan.jenisdok_id', $filter_jenis);

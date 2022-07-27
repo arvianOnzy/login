@@ -16,18 +16,7 @@
             @endforeach
           </select>
     </div>
-    <div class="col-4">
-        <span>Lokasi</span>
-        <select class="form-select" aria-label="Default select example" style="border-radius: 10px" id="lokasi">
-        <option selected value="0">pilih lokasi</option>
-        @foreach($lokasi as $lokasi)
-            <option value="{{ $lokasi->id }}" {{ isset($_GET['lokasi']) && $_GET['lokasi'] == $lokasi->id ? 'selected' : '' }}>{{ $lokasi->lokasi }}</option>
-        @endforeach
-      </select>
-
-        {{-- <div class="d-flex justify-content-end">
-        </div> --}}
-    </div>
+    
     <div class="col-4">
       <form action="{{ route('search') }}" method="GET">
         <span>Cari</span>
@@ -56,7 +45,6 @@
                             <th class="th" scope="col">Nama Dokumen</th>
                             <th class="th" scope="col">No Dokumen</th>
                             <th class="th" scope="col">Jenis Dokumen</th>
-                            <th class="th" scope="col">Lokasi</th>
                             <th class="th" scope="col">Status</th>
                             <th class="th" scope="col">Action</th>
                           </tr>
@@ -68,7 +56,7 @@
                             <td>{{ $p->nama_dok }}</td>    
                             <td>{{ $p->no_dok }}</td>    
                             <td>{{ $p->jenis }}</td>    
-                            <td>{{ $p->lokasi }}</td>    
+                            {{-- <td>{{ $p->lokasi }}</td>     --}}
                             <td><span class="badge rounded-pill bg-warning">Request</span></td>    
                             {{-- <input type="text" name="status" value="disetujui" hidden> --}}
                       {{-- <button class="badge bg-success border-0 p-2"

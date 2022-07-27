@@ -26,9 +26,11 @@
       </select>
     </div> --}}
     <div class="col-4">
-      <span>Cari</span>
-      <input class="form-control" type="text" placeholder="" aria-label="default input example" style="border-radius: 10px" id="search" name="search">
-  </div>
+      <form action="{{ route('cari') }}" method="GET">
+        <span>Cari</span>
+        <input value="{{ request('keyword') }}" class="form-control" type="search" placeholder="Cari data..." aria-label="default input example" style="border-radius: 10px" id="search" name="search">
+      </form>
+    </div>
 </div>
 @include('sections.cardClose')
     @include('sections.cardOpen')

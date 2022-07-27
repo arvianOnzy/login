@@ -16,7 +16,7 @@ class DokMasterController extends Controller
 
         $jenis_dokumen = Jenis_Dokumen::all();
         $filter_jenis = $request->input('jenis');
-
+        $keyword = $request->search;
         $dokumen_master = Dokumen_Master::leftJoin('jenis_dokumen', 'jenis_dokumen.id', '=', 'dokumen_master.jenisdok_id')
             ->selectRaw('dokumen_master.*, jenis_dokumen.jenis');
 
@@ -24,6 +24,10 @@ class DokMasterController extends Controller
         if ($filter_jenis) {
             $dokumen_master = $dokumen_master->where('dokumen_master.jenisdok_id', $filter_jenis);
         }
+        if ($keyword) {
+            $dokumen_master = $dokumen_master->where('nama_dok', 'like', "%" . $keyword . "%");
+        }
+
 
         $dokumen_master = $dokumen_master->paginate(15);
 
@@ -118,6 +122,35 @@ class DokMasterController extends Controller
         $dokumen_master = Dokumen_Master::all();
         return view('dokumenMaster.lihatData', [
             'dokumen_master' => $dokumen_master
+        ]);
+    }
+    public function cari(Request $request)
+    {
+        $jenis_dokumen = Jenis_Dokumen::all();
+        $filter_jenis = $request->input('jenis');
+        // $filter_lokasi = $request->input('lokasi');
+        $keyword = $request->search;
+        $dokumen_master = Dokumen_Master::leftJoin('jenis_dokumen', 'jenis_dokumen.id', '=', 'dokumen_master.jenisdok_id')
+            ->selectRaw('dokumen_master.*, jenis_dokumen.jenis');
+
+        if ($filter_jenis) {
+            $dokumen_master = $dokumen_master->where('dokumen_master.jenisdok_id', $filter_jenis);
+        }
+
+        // if ($filter_lokasi) {
+        //     $permintaan = $permintaan->where('permintaan.lokasi_id', $filter_lokasi);
+        // }
+        if ($keyword) {
+            $dokumen_master = $dokumen_master->where('nama_dok', 'like', "%" . $keyword . "%");
+        }
+
+        $dokumen_master = $dokumen_master->paginate(10);
+
+        return view('dokumenMaster.read', [
+            'dokumen_master' => $dokumen_master,
+            'jenis_dokumen' => $jenis_dokumen,
+
+
         ]);
     }
 }

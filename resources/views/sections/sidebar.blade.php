@@ -76,7 +76,7 @@
 
 
         {{-- ============== LOGOUT DAN BOTTOM SIDE BAR ================ --}}
-        <li>
+        {{-- <li>
             <div class="sidebar-footer">
                 <span class='bx bx-moon moon'></span>
                 <span class="link_name">Dark mode</span>
@@ -87,7 +87,7 @@
                     <span class="switch"></span>
                 </div>
             </div>        
-        </li>
+        </li> --}}
         
         <li>        
             <li>        

@@ -12,7 +12,7 @@
     <h6>{{ $dokumen->ruangan }}</h6>
     <h6>{{ $dokumen->rak }}</h6>
     <h6>{{ $dokumen->kardus }}</h6>
-    <img src="{{ asset('/storage/' . $dokumen->gambar) }}">
+    <img src="{{ .) }}">
     
     @endforeach
 @include('sections.cardClose')

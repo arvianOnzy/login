@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PinjamController;
 use App\Http\Controllers\DataPinjamanController;
 use App\Http\Controllers\DokMasterController;
+use App\Http\Controllers\DokumenExportController;
+use App\Http\Controllers\DokumenImportController;
 use App\Http\Controllers\FolderController;
 use App\Http\Controllers\JenisDokumenController;
 use App\Http\Controllers\LokasiController;
@@ -39,6 +41,12 @@ Route::middleware('auth')->group(function () {
         Route::get('/edit-data/{id}', 'edit')->name('Edit Data');
         Route::put('/update-data/{id}', 'update');
         Route::delete('/hapus-data/{id}', 'delete');
+    });
+    Route::controller(DokumenExportController::class)->group(function () {
+        Route::get('/export-data', 'export')->name('Export');
+    });
+    Route::controller(DokumenImportController::class)->group(function () {
+        Route::post('/import-data', 'import')->name('Import');
     });
     Route::controller(FolderController::class)->group(function () {
         Route::get('/folder', 'read')->name('Folder');

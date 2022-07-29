@@ -19,10 +19,9 @@ class UserController extends Controller
         // $role = new Role();
         $role = Role::all();
         $unit = Unit::all();
-        $user = User::leftJoin('role', 'role.id', '=', 'user.role_id')
-            ->leftJoin('unit', 'unit.id', '=', 'user.unit_id')
-            ->selectRaw('user.*, role.nama')
-            ->selectRaw('user.*, unit.nama_unit')
+        $user = User::leftJoin('role', 'role.id', '=', 'users.role_id')
+            ->leftJoin('unit', 'unit.id', '=', 'users.unit_id')
+
             // ->selectRaw('user.*', 'role.nama');
             ->get();
 
@@ -41,10 +40,8 @@ class UserController extends Controller
     {
         $role = Role::all();
         $unit = Unit::all();
-        $user = User::leftJoin('role', 'role.id', '=', 'user.role_id')
-            ->leftJoin('unit', 'unit.id', '=', 'user.unit_id')
-            ->selectRaw('user.*, role.nama')
-            ->selectRaw('user.*, unit.nama_unit')
+        $user = User::leftJoin('role', 'role.id', '=', 'users.role_id')
+            ->leftJoin('unit', 'unit.id', '=', 'users.unit_id')
             // ->selectRaw('user.*', 'role.nama');
             ->get();
 

@@ -26,6 +26,7 @@
                             <th class="th" scope="col">Nama</th>
                             <th class="th" scope="col">Email</th>
                             <th class="th" scope="col">Role</th>
+                            <th class="th" scope="col">Unit</th>
                             <th class="th" scope="col">Action</th>
                           </tr>
                         </thead>

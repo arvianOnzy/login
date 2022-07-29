@@ -46,10 +46,7 @@
                             <div class="mb-3">
                                 <label for="role">Role</label>
                                 <select class="form-select" aria-label="Default select example" style="border-radius: 10px" name="role_id" id="role_id">
-                                    
-                                    {{-- @foreach ($role as $role)
-                                    <option value="{{ $role->role_id }} {{ $role == $role ? 'selected' : '' }}">{{ $role->nama }}</option>
-                                    @endforeach --}}
+
                                     @foreach($role as $role)
                                     <option value="{{ $role->id }}" {{ isset($_GET['nama']) && $_GET['nama'] == $role->id ? 'selected' : '' }}>{{ $role->nama }}</option>
                                     @endforeach
@@ -57,11 +54,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="unit">Unit</label>
-                                <select class="form-select" aria-label="Default select example" style="border-radius: 10px" name="role_id" id="role_id">
-                                    
-                                    {{-- @foreach ($unit as $unit)
-                                    <option value="{{ $unit->role_id }} {{ $unit == $unit ? 'selected' : '' }}">{{ $unit->nama }}</option>
-                                    @endforeach --}}
+                                <select class="form-select" aria-label="Default select example" style="border-radius: 10px" name="unit_id" id="unit_id">
                                     @foreach($unit as $unit)
                                     <option value="{{ $unit->id }}" {{ isset($_GET['nama_unit']) && $_GET['nama_unit'] == $unit->id ? 'selected' : '' }}>{{ $unit->nama_unit }}</option>
                                     @endforeach

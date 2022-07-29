@@ -10,7 +10,7 @@ use App\Http\Controllers\DokumenExportController;
 use App\Http\Controllers\DokumenImportController;
 use App\Http\Controllers\FolderController;
 use App\Http\Controllers\JenisDokumenController;
-use App\Http\Controllers\LokasiController;
+use App\Http\Controllers\UnitController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TahapanController;
 
@@ -61,6 +61,14 @@ Route::middleware('auth')->group(function () {
         Route::get('/edit-jenis/{id}', 'edit')->name('Edit Jenis Dokumen');
         Route::put('/update-jenis/{id}', 'update');
         Route::delete('/hapus-jenis/{id}', 'edit')->name('Edit Folder');
+    });
+    Route::controller(UnitController::class)->group(function () {
+        Route::get('/unit', 'read')->name('Unit');
+        Route::get('/tambah-unit', 'create')->name('Tambah Unit');
+        Route::post('/tambah-unit/store', 'store');
+        Route::get('/edit-unit/{id}', 'edit')->name('Edit Unit');
+        Route::put('/update-unit/{id}', 'update');
+        Route::delete('/hapus-unit/{id}', 'delete')->name('Hapus Unit');
     });
     // Route::controller(LokasiController::class)->group(function () {
     //     Route::get('/lokasi', 'read')->name('Lokasi');

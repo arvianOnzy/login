@@ -30,6 +30,6 @@ class TahapanHdr extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('tahapan_hdr');
     }
 }

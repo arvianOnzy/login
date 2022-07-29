@@ -18,7 +18,8 @@ class CreateUsersTable extends Migration
             $table->integer('nip')->unique()->nullable();
             $table->string('name');
             $table->string('email')->unique();
-            $table->integer('role')->default('1');
+            $table->integer('role_id')->default('1');
+            $table->integer('nama_unit')->nullable();
             $table->integer('darkMode')->default('0');
             $table->integer('openSideBar')->default('1');
             $table->string('password')->default('$2y$10$JUUKFmyB9pWCIAcTjC12QOT5XdV7t8peTA3.zbNvaUUj.pwGwBVq.');

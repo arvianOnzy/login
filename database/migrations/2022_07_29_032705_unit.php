@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class TahapanDtl extends Migration
+class Unit extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class TahapanDtl extends Migration
      */
     public function up()
     {
-        Schema::create('tahapan_dtl', function (Blueprint $table) {
+        Schema::create('unit', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->string('unit_id');
-            $table->string('user_id');
+            $table->string('nama_unit');
 
             $table->timestamp('last_used_at')->nullable();
             $table->timestamp('deleted_at')->nullable();
@@ -32,6 +30,6 @@ class TahapanDtl extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tahapapan_dtl');
+        Schema::dropIfExists('unit');
     }
 }

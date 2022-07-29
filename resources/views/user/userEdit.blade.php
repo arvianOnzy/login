@@ -45,6 +45,18 @@
             </select>
         </div>
         <div class="mb-3">
+            <label for="unit">Unit</label>
+            <select class="form-select" aria-label="Default select example" style="border-radius: 10px" id="role_id" name="role_id">
+                
+                {{-- @foreach ($unit as $unit)
+                    <option value="{{ $unit->id }} {{ $unit == $unit ? 'selected' : '' }}">{{ $unit->nama }}</option>
+                @endforeach --}}
+                @foreach($unit as $unit)
+                    <option value="{{ $unit->id }}" {{ isset($_GET['nama_unit']) && $_GET['nama_unit'] == $unit->id ? 'selected' : '' }}>{{ $unit->nama_unit }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="mb-3">
             <label for="password">Password</label>
             <input value="" type="password" class="form-control @error('') is-invalid @enderror" id="password" name="password" autocomplete="new-password">
         </div>

@@ -14,7 +14,7 @@ class Folder extends Migration
     public function up()
     {
         Schema::create('folder', function (Blueprint $table) {
-            $table->id();
+            $table->string('id');
             $table->string('tree_id');
             $table->string('folder');
             $table->string('unit_id');
@@ -32,6 +32,6 @@ class Folder extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('folder');
     }
 }

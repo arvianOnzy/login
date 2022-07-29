@@ -38,6 +38,7 @@
                 {{-- <li><a href="/lokasi" class="fs-6">Lokasi</a></li> --}}
                 <li><a href="/folder">Folder</a></li>
                 <li><a href="/tahapan">Tahapan</a></li>
+                <li><a href="/unit">Unit</a></li>
             </ul>
         </li>
         

@@ -28,6 +28,6 @@ class JenisDokumen extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('jenis_dokumen');
     }
 }

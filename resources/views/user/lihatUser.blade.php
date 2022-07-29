@@ -10,6 +10,7 @@
         <h5>{{ $user->name }}</h5>
         <h5>{{ $user->email }}</h5>
         <h5>{{ $user->role }}</h5>
+        <h5>{{ $user->nama_unit }}</h5>
         @endforeach
     </div>
    

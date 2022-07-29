@@ -36,6 +36,6 @@ class DokumenMaster extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('dokumen_master');
     }
 }

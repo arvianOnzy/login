@@ -29,7 +29,6 @@ class jenisDokumenController extends Controller
 
         $validatedData = $request->validate([
             'jenis' => 'required',
-
         ]);
 
         Jenis_Dokumen::create($validatedData);

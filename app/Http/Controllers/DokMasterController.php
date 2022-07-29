@@ -16,16 +16,13 @@ class DokMasterController extends Controller
 
         $jenis_dokumen = Jenis_Dokumen::all();
         $filter_jenis = $request->input('jenis');
-        $keyword = $request->search;
+
         $dokumen_master = Dokumen_Master::leftJoin('jenis_dokumen', 'jenis_dokumen.id', '=', 'dokumen_master.jenisdok_id')
             ->selectRaw('dokumen_master.*, jenis_dokumen.jenis');
 
 
         if ($filter_jenis) {
             $dokumen_master = $dokumen_master->where('dokumen_master.jenisdok_id', $filter_jenis);
-        }
-        if ($keyword) {
-            $dokumen_master = $dokumen_master->where('nama_dok', 'like', "%" . $keyword . "%");
         }
 
 
@@ -45,6 +42,7 @@ class DokMasterController extends Controller
         $dokumen_master = Dokumen_Master::leftJoin('jenis_dokumen', 'jenis_dokumen.id', '=', 'dokumen_master.jenisdok_id')
             ->selectRaw('dokumen_master.*, jenis_dokumen.jenis')
             ->get();
+
         return view('dokumenMaster.tambahkandata', [
             // 'request' => $request,
             'dokumen_master' => $dokumen_master,
@@ -127,21 +125,18 @@ class DokMasterController extends Controller
     public function cari(Request $request)
     {
         $jenis_dokumen = Jenis_Dokumen::all();
-        $filter_jenis = $request->input('jenis');
         // $filter_lokasi = $request->input('lokasi');
         $keyword = $request->search;
         $dokumen_master = Dokumen_Master::leftJoin('jenis_dokumen', 'jenis_dokumen.id', '=', 'dokumen_master.jenisdok_id')
             ->selectRaw('dokumen_master.*, jenis_dokumen.jenis');
 
-        if ($filter_jenis) {
-            $dokumen_master = $dokumen_master->where('dokumen_master.jenisdok_id', $filter_jenis);
-        }
 
-        // if ($filter_lokasi) {
-        //     $permintaan = $permintaan->where('permintaan.lokasi_id', $filter_lokasi);
-        // }
         if ($keyword) {
-            $dokumen_master = $dokumen_master->where('nama_dok', 'like', "%" . $keyword . "%");
+            $dokumen_master = $dokumen_master->where('nama_dok', 'like', "%" . $keyword . "%")
+                ->orWhere('jenis', 'like', "%" . $keyword . "%")
+                ->orWhere('ruangan', 'like', "%" . $keyword . "%")
+                ->orWhere('rak', 'like', "%" . $keyword . "%")
+                ->orWhere('kardus', 'like', "%" . $keyword . "%");
         }
 
         $dokumen_master = $dokumen_master->paginate(10);

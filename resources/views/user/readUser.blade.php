@@ -36,7 +36,8 @@
                             <td>{{ $u->nip }}</td>    
                             <td>{{ $u->name }}</td>    
                             <td>{{ $u->email }}</td>    
-                            <td>{{ $u->role->nama }}</td>    
+                            <td>{{ $u->nama }}</td>    
+                            <td>{{ $u->nama_unit }}</td>    
                               
                             {{-- <td><span class="badge rounded-pill bg-warning">Request</span></td>     --}}
                             {{-- <input type="text" name="status" value="disetujui" hidden> --}}

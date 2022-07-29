@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Role;
+use App\Models\Unit;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Hash;
@@ -16,22 +17,41 @@ class UserController extends Controller
     public function read()
     {
         // $role = new Role();
-        // $role = Role::all();
-        $user = User::with('role')->get();
+        $role = Role::all();
+        $unit = Unit::all();
+        $user = User::leftJoin('role', 'role.id', '=', 'user.role_id')
+            ->leftJoin('unit', 'unit.id', '=', 'user.unit_id')
+            ->selectRaw('user.*, role.nama')
+            ->selectRaw('user.*, unit.nama_unit')
+            // ->selectRaw('user.*', 'role.nama');
+            ->get();
+
+        // ->get(['user.*', 'unit.nama_unit']);
+
+        // $user = $user->paginate(10);
+
         return view('user.readUser', [
             'user' => $user,
-            // 'role' => $role
+            'role' => $role,
+            'unit' => $unit
         ]);
     }
 
     public function create()
     {
         $role = Role::all();
-        $user = User::with('role')->get();
+        $unit = Unit::all();
+        $user = User::leftJoin('role', 'role.id', '=', 'user.role_id')
+            ->leftJoin('unit', 'unit.id', '=', 'user.unit_id')
+            ->selectRaw('user.*, role.nama')
+            ->selectRaw('user.*, unit.nama_unit')
+            // ->selectRaw('user.*', 'role.nama');
+            ->get();
+
         return view('user.tambahUser', [
             'user' => $user,
-            // 'role' => Role::find($id)
-            'role' => $role
+            'role' => $role,
+            'unit' => $unit
         ]);
     }
 
@@ -41,16 +61,13 @@ class UserController extends Controller
         // exit;
 
         $request->validate([
-            // 'nip' => 'required',
-            // 'name' => 'required',
-            // 'email' => 'required' | 'email',
-            // 'password' => 'required',
-            // 'role_id' => 'required',
+
             'nip' => ['required'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'role_id' => ['required'],
+            'unit_id' => ['required'],
         ]);
 
         User::create([
@@ -59,6 +76,7 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'role_id' => $request->role_id,
+            'unit_id' => $request->unit_id,
         ]);
 
         // dd($request);
@@ -72,9 +90,11 @@ class UserController extends Controller
         // exit;
         $user = User::find($id);
         $role = Role::all();
+        $unit = Unit::all();
         return view('user.userEdit', [
             'user' => $user,
-            'role' => $role
+            'role' => $role,
+            'unit' => $unit
         ]);
     }
 
@@ -87,6 +107,7 @@ class UserController extends Controller
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'role_id' => $request->input('role_id'),
+            'unit_id' => $request->input('unit_id'),
             'password' => $request->input('password'),
         ];
         $user = User::find($id);

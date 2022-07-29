@@ -42,11 +42,11 @@
             <div class="col-6">
                 <div class="d-flex justify-content-end">
                   <a class="btn btn-success" href="{{ route('Export') }}" role="button"> Export</a> 
-                  <form action="{{ route('Import') }}" method="post" enctype="multipart/form-data">
+                  {{-- <form action="{{ route('Import') }}" method="post" enctype="multipart/form-data">
                   @csrf
                   <input type="file" name="file" id="file">
                   <button class="btn btn-primary">Import data</button>
-                </form>
+                </form> --}}
                   <a class="btn btn-primary" href="/tambah-data" role="button">Tambahkan Dokumen</a>
                 </div>
             </div>

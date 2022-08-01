@@ -38,7 +38,7 @@
 <!-- end modal -->
   <div class="row mb-4 mt-2">
       <div class="col-6">
-          <h5 class="card-title">Master Tahapan</h5>
+          <h3 class="card-title">Master Tahapan</h3>
       </div>
       <div class="col-6">
           <div class="d-flex justify-content-end">
@@ -46,51 +46,34 @@
           </div>
       </div>
   </div>
-      <div style="max-height: 60vh; overflow-y:auto;">
-          <div class="card-text me-3">
-              <table class="table">
-                  <thead class="thead">
-                    <tr>
-                      <th class="th" scope="col">No</th>
-                      <th class="th" scope="col">Master Tahapan</th>
-                      <th class="th" scope="col">Active</th>
-                      <th class="th" scope="col">Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                      
-                      <tr>
-                        <td>BKK</td>
-                        <td>abal</td>    
-                        <td>5</td>
-                          
-                        <td>
-                          <a href="" style="background:none;border:none;outline:none;"><i class='bx bx-pencil tableAction'></i></a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>1</td>
-                        <td>abal</td>    
-                        <td>5</td>
-                          
-                        <td>
-                          <a href="" style="background:none;border:none;outline:none;"><i class='bx bx-pencil tableAction'></i></a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>1</td>
-                        <td>abal</td>    
-                        <td>5</td>
-                          
-                        <td>
-                          <a href="" style="background:none;border:none;outline:none;"><i class='bx bx-pencil tableAction'></i></a>
-                        </td>
-                      </tr>
-                      
-                  </tbody>
-              </table>                    
-          </div>
-      </div>
+  <div style="max-height: 60vh; overflow-y:auto; ">
+    <div class="card-text me-3">
+        <table class="table">
+            <thead class="thead">
+              <tr>
+                <th class="th" scope="col">No</th>
+                <th class="th" scope="col">Master Tahapan</th>
+                <th class="th" scope="col">Active</th>
+                <th class="th" scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody class="isi-tabel">
+              @foreach($tahapan as $tahapan)
+              <tr>
+                <td>{{$loop->iteration}}</td>
+                <td><a href="/tahapan/detail/{{ $tahapan->id }}">{{ $tahapan->master_tahapan }}</a></td>
+                  
+                <td></td>     
+                <td class="d-flex py-3">
+                  <a href="#" style="background:none;border:none;outline:none;" class="btn-edit-tahapan" data-id="{{ $tahapan->id }}"><i class='bx bx-pencil tableAction'></i></a>
+                </td>
+              </tr>
+             
+              @endforeach
+            </tbody>
+        </table>                    
+    </div>
+</div>
     @include('sections.cardClose')
 @endsection
 
@@ -102,12 +85,21 @@
         var me = this;
         me.listeners();
       },
+      isEdit:false,
       listeners:function(){
         var me = this;
 
         $(".tambah-tahapan").click(function(e){
           e.preventDefault();
+          me.isEdit = false;
           $(".modal-tahapan").modal('show');
+        });
+
+        $(".btn-edit-tahapan").click(function(e){
+          e.preventDefault();
+          me.isEdit = true;
+          var id = $(this).attr('data-id');
+          me.getTahapanHdrById(id);
         })
 
         $(".btn-save-tahapan").click(function(){
@@ -129,12 +121,20 @@
                       data.message,
                       'success'
                     );
-
-                     setTimeout(function(){
-                        var url = '{{ route("detailTahapan", ":id") }}';
+                    
+                    // jika tambah
+                    if(!me.isEdit){
+                      setTimeout(function(){
+                        var url = '{{ route("masterTahapan") }}';
                         url = url.replace(':id', data.id);
                         window.location.replace(url);
                      },1000)
+                    }
+                    else{
+                      // jika edit
+                      window.location.reload();
+                    }
+                     
                      
                 },
                 error: function() {
@@ -152,7 +152,55 @@
             });
 
           }.bind(this));
-      }
+      },
+      getTahapanHdr(){
+        const url = "{{ url('/tahapan') }}";
+        $.ajax({
+                type: "GET",
+                url,
+                data: {},
+                dataType: "json",
+                success: function(result) {
+                    $(".isi-tabel").html('');
+                    $.each(result.data, function(index, item){
+                
+                      $(".isi-tabel").append(`
+                      <tr>
+                        <td>${index + 1}</td>
+                        <td>${item.master_tahapan}</td>    
+                        <td></td>    
+                          
+                        
+                        <td class="d-flex py-3">
+                          <a href="#" style="background:none;border:none;outline:none;" class="btn-edit-tahapan" data-id="{{ $tahapan->id }}"><i class='bx bx-pencil tableAction'></i></a>
+                        </td>
+                      </tr>
+                      `);
+                    })
+                },
+                error: function() {
+
+                }
+            });
+      },
+      getTahapanHdrById:function(id){
+        const url = "{{ url('/tahapan/hdr-by-id') }}";
+        $.ajax({
+                type: "GET",
+                url,
+                data: { id },
+                dataType: "json",
+                success: function(result) {
+                    $("[name=id]").val(id);
+                    $("[name=master_tahapan]").val(result.data.master_tahapan);
+                    $(".modal-tahapan").modal('show');
+                },
+                error: function() {
+
+                }
+            });
+
+      },
     }
 
     app.init();

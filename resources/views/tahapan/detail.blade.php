@@ -30,6 +30,14 @@
           <label>Urutan</label>
           <input type="number" class="form-control" required name="urutan">
         </div>
+        <div class="form-group">
+          <label for="unit">Unit</label>
+            <select class="form-select" aria-label="Default select example" style="border-radius: 10px" name="unit_id" id="unit_id">
+              
+                <option value="">IT</option>
+                
+            </select>
+        </div>
       </form>
       </div>
       <div class="modal-footer">
@@ -53,7 +61,7 @@
       </div>
   </div>
   <div class="row">
-      <label for="staticEmail" class="col-sm-2 col-form-label">Master Tahapan</label>
+      <h3 class="col-sm-2 col-form-label">Master Tahapan</h3>
       <div class="col-sm-2">
         <input type="text" readonly class="form-control-plaintext" value="{{ $tahapan->master_tahapan }}">
       </div>
@@ -156,6 +164,7 @@
       resetForm:function(){
         $("[name=nama]").val('');
         $("[name=urutan]").val('');
+        $("[name=unit]").val('');
         $("[name=id]").val('');
       },
       getTahapanById(id){
@@ -171,6 +180,7 @@
                 $(".loading-overlay").hide();
                   $("[name=nama]").val(data.nama);
                   $("[name=urutan]").val(data.urutan);
+                  $("[name=unit]").val(data.unit);
                   $("[name=id]").val(data.id);
             },
             error: function() {
@@ -268,7 +278,7 @@
                         <td>${index + 1}</td>
                         <td>${item.nama}</td>    
                         <td>${item.urutan}</td>
-                        <td></td>
+                        <td>${item.unit}</td>
                         <td></td>
                         <td>
                           <a class="btn-edit" href="" style="background:none;border:none;outline:none;" data-id="${item.id}"><i class='bx bx-pencil tableAction'></i></a>

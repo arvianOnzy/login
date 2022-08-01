@@ -17,4 +17,8 @@ class Unit extends Model
     {
         return $this->hasMany(User::class);
     }
+    public function tahapanHdr()
+    {
+        return $this->hasMany(TahapanHdr::class);
+    }
 }

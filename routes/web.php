@@ -79,7 +79,10 @@ Route::middleware('auth')->group(function () {
         Route::group(['prefix' => 'tahapan'], function () {
             Route::get('/', 'index')->name('masterTahapan');
             Route::get('/detail/{id}', 'detail')->name('detailTahapan');
+            Route::get('/tahapan-by-id', 'tahapanById')->name('tahapanById');
+            Route::post('/hapus', 'hapus')->name('hapus');
             Route::post('/store', 'store')->name('storeTahapan');
+            Route::post('/store-sequence', 'storeSequence')->name('storeSequence');
         });
     });
     Route::controller(UserController::class)->group(function () {

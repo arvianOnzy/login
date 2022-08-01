@@ -36,7 +36,12 @@
     <script src="{{ asset('boxicons/boxicons.js') }}"></script>
     <script src="{{ asset('jstree/dist/jstree.min.js') }}"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-      
+    <script>
+        $("button[data-dismiss=modal]").click(function()
+        {
+          $(".modal").modal('hide');
+        });
+    </script>
     @include('sweetalert::alert')
     @yield('script')
   </body>

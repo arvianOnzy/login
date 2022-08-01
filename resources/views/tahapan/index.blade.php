@@ -131,7 +131,8 @@
                     );
 
                      setTimeout(function(){
-                        var url = "{{ route('detailTahapan') }}" + '/' + data.id;
+                        var url = '{{ route("detailTahapan", ":id") }}';
+                        url = url.replace(':id', data.id);
                         window.location.replace(url);
                      },1000)
                      

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 29, 2022 at 06:31 AM
+-- Generation Time: Aug 01, 2022 at 02:58 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -72,6 +72,15 @@ CREATE TABLE `folder` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `folder`
+--
+
+INSERT INTO `folder` (`id`, `tree_id`, `folder`, `last_used_at`, `deleted_at`, `created_at`, `updated_at`) VALUES
+('10c94bc2-3bd9-4f0d-9c69-32d11e8be97c', '2.', 'p', NULL, NULL, '2022-07-28 23:13:46', '2022-07-28 23:13:46'),
+('405cea46-77e0-452f-9aa2-13cf96bff490', '1.', 'l', NULL, NULL, '2022-07-28 23:13:08', '2022-07-28 23:13:08'),
+('b231800d-12d5-4b59-bec2-62e03439732a', '1.1.', 'o', NULL, NULL, '2022-07-28 23:13:19', '2022-07-28 23:13:19');
 
 -- --------------------------------------------------------
 
@@ -245,7 +254,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `nip`, `name`, `email`, `role_id`, `unit_id`, `darkMode`, `openSideBar`, `password`, `email_verified_at`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, NULL, 'admin', 'admin@ims.icon', 1, NULL, 0, 1, '$2y$10$psiB6ucYbm4w3UY8GQ2rR.ybebOYpaPR5.49S0SmHA56FjGMey4WS', NULL, NULL, '2022-07-28 20:34:32', '2022-07-28 20:34:32');
+(1, NULL, 'admin', 'admin@ims.icon', 1, '1', 0, 1, '$2y$10$psiB6ucYbm4w3UY8GQ2rR.ybebOYpaPR5.49S0SmHA56FjGMey4WS', NULL, NULL, '2022-07-28 20:34:32', '2022-07-28 20:34:32'),
+(3, 1, 'arvian ilmi', 'arvianilmi55@gmail.com', 1, '1', 0, 1, '$2y$10$WMsw41x8Wd7u4ZUgCEejU.WwjmnHD7dHfadeZAvhy5przDX6/UqUC', NULL, NULL, '2022-07-28 23:05:57', '2022-07-28 23:05:57');
 
 --
 -- Indexes for dumped tables
@@ -390,7 +400,7 @@ ALTER TABLE `tahapan_hdr`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
